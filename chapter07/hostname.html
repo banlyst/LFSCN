@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      7.8.&nbsp;配置系统的主机名称
+    </title>
+    <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="lfs" id="lfs-SVN-20120314">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 SVN-20120314
+      </h4>
+      <h3>
+        第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="usage.html" title="如何正确使用启动脚本?">上一页</a>
+          <p>
+            如何正确使用启动脚本?
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="setclock.html" title="配置setclock脚本">下一页</a>
+          <p>
+            配置setclock脚本
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter07.html" title=
+          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-scripts-hostname" name="ch-scripts-hostname"></a>7.8.
+        配置系统的主机名称
+      </h1>
+      <p>
+        脚本 <span class="command"><strong>localnet</strong></span>
+        中，有一部分是用来设置主机名称。这需要在 <code class=
+        "filename">/etc/sysconfig/network</code> 文件中配置。
+      </p>
+      <p>
+        创建 <code class="filename">/etc/sysconfig/network</code> 文件并输入主机名称：
+      </p>
+      <pre class="userinput">
+<kbd class="command">echo "HOSTNAME=<em class=
+"replaceable"><code>&lt;lfs&gt;</code></em>" &gt; /etc/sysconfig/network</kbd>
+</pre>
+      <p>
+        <em class="replaceable"><code>&lt;lfs&gt;</code></em>
+        需要替换成你想要的主机名称。不要在这里输入你的全称域名（FQDN）。全称域名应该写入 <code class=
+        "filename">/etc/hosts</code> 文件中。
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="usage.html" title="如何正确使用启动脚本?">上一页</a>
+          <p>
+            如何正确使用启动脚本?
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="setclock.html" title="配置setclock脚本">下一页</a>
+          <p>
+            配置setclock脚本
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter07.html" title=
+          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

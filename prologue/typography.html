@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      版式
+    </title>
+    <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="lfs" id="lfs-SVN-20120314">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 SVN-20120314
+      </h4>
+      <h3>
+        序
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="hostreqs.html" title="宿主系统需求">上一页</a>
+          <p>
+            宿主系统需求
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="organization.html" title="结构">下一页</a>
+          <p>
+            结构
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="preface.html" title="序">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="pre-typography" name="pre-typography"></a>viii. 版式
+      </h1>
+      <p>
+        为了让内容容易跟进，本书中用到了几种版式惯例。这一节包含了 Linux From Scratch 所用到的版式。
+      </p>
+      <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr</kbd>
+</pre>
+      <p>
+        这种形式的文本除上下文有说明的情况外都要求准确键入。它也在解释部分用于识别指令。
+      </p>
+      <p>
+        有些情况下，一个逻辑行可以扩展至多个物理行，每行末有一反斜线。
+      </p>
+      <pre class="userinput">
+<kbd class="command">CC="gcc -B/usr/bin/" ../binutils-2.18/configure \
+  --prefix=/tools --disable-nls --disable-werror</kbd>
+</pre>
+      <p>
+        注意反斜线后需要立即换行。其他空字符如空格和tab字符会导致不正缺的结果。
+      </p>
+      <pre class="screen">
+<code class=
+"computeroutput">install-info: unknown option '--dir-file=/mnt/lfs/usr/info/dir'</code>
+</pre>
+      <p>
+        这种形式的文本（等宽文本）显示屏幕输出，通常是执行的命令产生的结果。这种格式也用于表示文件名，如 <code class=
+        "filename">/etc/ld.so.conf</code> 。
+      </p>
+      <p>
+        <span class="emphasis"><em>强调</em></span>
+      </p>
+      <p>
+        这种形式的文本在本书中用于多种目的，主要是强调要点或重要事物。
+      </p>
+      <p>
+        <a class="ulink" href=
+        "http://www.linuxfromscratch.org/">http://www.linuxfromscratch.org/</a>
+      </p>
+      <p>
+        这种格式用于超链接至 LFS 社区和外部页面，包括指南，下载位置和网站。
+      </p>
+      <pre class="userinput">
+<kbd class="command">cat &gt; $LFS/etc/group &lt;&lt; "EOF"
+<code class="literal">root:x:0:
+bin:x:1:
+......</code>
+EOF</kbd>
+</pre>
+      <p>
+        此格式用于创建配置文件。第一条命令告诉系统按遇到EOF之前的全部输入创建文件 <code class=
+        "filename">$LFS/etc/group</code> 。所以这样的部分通常要直接完整键入。
+      </p>
+      <p>
+        <em class="replaceable"><code>&lt;替换的文本&gt;</code></em>
+      </p>
+      <p>
+        此格式用于封装不必键入或复制粘贴的文本。
+      </p>
+      <p>
+        <em class="replaceable"><code>可选的文本</code></em>
+      </p>
+      <p>
+        此格式用于封装可选的文本。
+      </p>
+      <p>
+        <code class="filename">passwd(5)</code>
+      </p>
+      <p>
+        此格式用于指向特定的手册页。括号中的数字指手册中特定的章节。举个例子， <span class=
+        "command"><strong>passwd</strong></span> 有两页手册。 每次 LFS 安装，这两页手册会位于
+        <code class="filename">/usr/share/man/man1/passwd.1</code> 和
+        <code class="filename">/usr/share/man/man5/passwd.5</code> 。当本书使用
+        <code class="filename">passwd(5)</code> 的时候指的就是 <code class=
+        "filename">/usr/share/man/man5/passwd.5</code> 。<span class=
+        "command"><strong>man passwd</strong></span> 会印出找到的第一个符合
+        “<span class="quote">passwd</span>” 的页面,也就是 <code class=
+        "filename">/usr/share/man/man1/passwd.1</code> 。此例中，你需要运行
+        <span class="command"><strong>man 5 passwd</strong></span>
+        来阅读制定的页面。要注意多数手册页不会在不同章节有相同的文件名，因此 <span class="command"><strong>man
+        <em class="replaceable"><code>&lt;程序名&gt;</code></em></strong></span>
+        通常是有效的。
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="hostreqs.html" title="宿主系统需求">上一页</a>
+          <p>
+            宿主系统需求
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="organization.html" title="结构">下一页</a>
+          <p>
+            结构
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="preface.html" title="序">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

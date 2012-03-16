@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      5.9.&nbsp;Binutils-2.22 - 第二遍
+    </title>
+    <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="lfs" id="lfs-SVN-20120314">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 SVN-20120314
+      </h4>
+      <h3>
+        第&nbsp;5&nbsp;章&nbsp;搭建临时系统
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="adjusting.html" title="调节工具链">上一页</a>
+          <p>
+            调节工具链
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gcc-pass2.html" title=
+          "GCC-4.6.3 - 第二遍">下一页</a>
+          <p>
+            GCC-4.6.3 - 第二遍
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;搭建临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-tools-binutils-pass2" name=
+        "ch-tools-binutils-pass2"></a>5.9. Binutils-2.22 - 第二遍
+      </h1>
+      <div class="package" lang="zh-cn" xml:lang="zh-cn">
+        <p>
+          Binutils 程序包包含一个链接器、一个汇编器和其他用于处理对象文件的工具。
+        </p>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">预计编制时间:</strong> <span class=
+              "segbody">1.1 SBU</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">需求磁盘空间:</strong> <span class=
+              "segbody">363 MB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="installation" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          5.9.1. 安装 Binutils
+        </h2>
+        <p>
+          再创建一个独立的编制目录：
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir -v ../binutils-build
+cd ../binutils-build</kbd>
+</pre>
+        <p>
+          准备编译 Binutils：
+        </p>
+        <pre class="userinput">
+<kbd class="command">CC="$LFS_TGT-gcc -B/tools/lib/" \
+AR=$LFS_TGT-ar                  \
+RANLIB=$LFS_TGT-ranlib          \
+../binutils-2.22/configure      \
+        --prefix=/tools         \
+        --disable-nls           \
+        --with-lib-path=/tools/lib</kbd>
+</pre>
+        <div class="variablelist">
+          <p class="title">
+            <b>新的配置选项的含义：</b>
+          </p>
+          <dl>
+            <dt>
+              <span class="term"><em class="parameter"><code>CC="$LFS_TGT-gcc
+              -B/tools/lib/" AR=$LFS_TGT-ar
+              RANLIB=$LFS_TGT-ranlib</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                因为这一次是原生编制 Binutils，设置这些变量可以确保编制系统使用交叉编译器和相关工具而不是宿主系统上的工具。
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--with-lib-path=/tools/lib</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                此项告诉配置脚本在 Binutils 编译期间指定库搜索路径，使得 <code class=
+                "filename">/tools/lib</code> 传递给链接器。这就防止了链接器搜索宿主上的库目录。
+              </p>
+            </dd>
+          </dl>
+        </div>
+        <p>
+          编译程序包：
+        </p>
+        <pre class="userinput">
+<kbd class="command">make</kbd>
+</pre>
+        <p>
+          安装程序包：
+        </p>
+        <pre class="userinput">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          现在为了下一章中的 “<span class="quote">重新调节</span>” 一节准备链接器：
+        </p>
+        <pre class="userinput">
+<kbd class="command">make -C ld clean
+make -C ld LIB_PATH=/usr/lib:/lib
+cp -v ld/ld-new /tools/bin</kbd>
+</pre>
+        <div class="variablelist">
+          <p class="title">
+            <b>make 参数的含义：</b>
+          </p>
+          <dl>
+            <dt>
+              <span class="term"><em class="parameter"><code>-C ld
+              clean</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                此项告诉 make 程序移除 <code class="filename">ld</code>
+                子目录中所有编译产生的文件。
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class="parameter"><code>-C ld
+              LIB_PATH=/usr/lib:/lib</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                此项重新编制 <code class="filename">ld</code> 子目录中的一切。在命令行中指定
+                <code class="envar">LIB_PATH</code> Makefile
+                变量允许我门覆盖临时工具的默认值并指向正确的最终路径。此变量的值指定了链接器默认的库搜索路径。这项准备工作在下一章中用到。
+              </p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="content" lang="zh-cn" xml:lang="zh-cn">
+        <p>
+          有关此程序包的细节位于<a class="xref" href=
+          "../chapter06/binutils.html#contents-binutils" title=
+          "6.13.2.&nbsp;Binutils 的内容">第&nbsp;6.13.2&nbsp;节 “Binutils
+          的内容”</a>。
+        </p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="adjusting.html" title="调节工具链">上一页</a>
+          <p>
+            调节工具链
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gcc-pass2.html" title=
+          "GCC-4.6.3 - 第二遍">下一页</a>
+          <p>
+            GCC-4.6.3 - 第二遍
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;搭建临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

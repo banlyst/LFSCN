@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      7.9.&nbsp;配置setclock脚本
+    </title>
+    <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="lfs" id="lfs-SVN-20120314">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 SVN-20120314
+      </h4>
+      <h3>
+        第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="hostname.html" title="配置系统的主机名称">上一页</a>
+          <p>
+            配置系统的主机名称
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="console.html" title="配置Linux控制台">下一页</a>
+          <p>
+            配置Linux控制台
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter07.html" title=
+          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-scripts-setclock" name="ch-scripts-setclock"></a>7.9.
+        配置setclock脚本
+      </h1>
+      <p>
+        <span class="command"><strong>setclock</strong></span> 从硬件时钟读取时间，通常是
+        BIOS 或者 CMOS。如果你的硬件时钟设置成 UTC，这个脚本会将硬件时间根据 <code class=
+        "filename">/etc/localtime</code> 文件（这个文件告诉 <span class=
+        "command"><strong>hwclock</strong></span>
+        程序用户所在的时区）转化成本地时间。没有方法能检测出你的时钟是否被设置成 UTC，所以需要用户自己设置。
+      </p>
+      <p>
+        当内核在启动后检测硬件时 <span class="command"><strong>setclock</strong></span>
+        程序被 <span class="application">udev</span>
+        调用。用户也可以用stop参数执行该命令，这样会将系统时间保存在CMOS中。
+      </p>
+      <p>
+        如果你想不起来你的时钟是否被设置成 UTC，可以通过执行 <strong class="userinput"><code>hwclock
+        --localtime --show</code></strong>
+        命令查看。如果输出的时间是你的手表上的时间，那么硬件时间被设置成了本地时间。如果 <span class=
+        "command"><strong>hwclock</strong></span> 输出的不是本地时间，那么基本上它被设置成UTC时间。
+      </p>
+      <p>
+        更改下面变量 <code class="envar">UTC</code> 的值为 <em class=
+        "parameter"><code>0</code></em> 如果你的硬件时钟没有被设置成UTC时间。
+      </p>
+      <p>
+        可以使用下面的命令创建一个新的文件 <code class="filename">/etc/sysconfig/clock</code>：
+      </p>
+      <pre class="userinput">
+<kbd class="command">cat &gt; /etc/sysconfig/clock &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/sysconfig/clock
+
+UTC=1
+
+# Set this to any options you might need to give to hwclock, 
+# such as machine hardware clock type for Alphas.
+CLOCKPARAMS=
+
+# End /etc/sysconfig/clock</code>
+EOF</kbd>
+</pre>
+      <p>
+        这里有一个很好的关于如何处理LFS系统中的时间的提示<a class="ulink" href=
+        "http://www.linuxfromscratch.org/hints/downloads/files/time.txt">http://www.linuxfromscratch.org/hints/downloads/files/time.txt</a>。它解释了时区，UTC，还有
+        <code class="envar">TZ</code> 环境变量等等。
+      </p>
+      <div class="admon note">
+        <img alt="[注意]" src="../images/note.png" />
+        <h3>
+          注意
+        </h3>
+        <p>
+          参数 CLOCKPARAMS 和 UTC 也可以在 <code class=
+          "filename">/etc/sysconfig/rc.site</code> 文件中设置。
+        </p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="hostname.html" title="配置系统的主机名称">上一页</a>
+          <p>
+            配置系统的主机名称
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="console.html" title="配置Linux控制台">下一页</a>
+          <p>
+            配置Linux控制台
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter07.html" title=
+          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

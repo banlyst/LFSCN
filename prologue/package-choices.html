@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      使用本书中软件包的理由
+    </title>
+    <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="lfs" id="lfs-SVN-20120314">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 SVN-20120314
+      </h4>
+      <h3>
+        序
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="standards.html" title="LFS 与标准">上一页</a>
+          <p>
+            LFS 与标准
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="prerequisites.html" title="前提条件">下一页</a>
+          <p>
+            前提条件
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="preface.html" title="序">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="pre-why" name="pre-why"></a>v. 使用本书中软件包的理由
+      </h1>
+      <p>
+        就像前面所说，LFS的目的是构建一个完整可用的基础系统。这包括一些用于提供相对最小的工作环境的软件包，用户在此之上定制自己的系统。这些工具经常会用于替换他们本身。这并不意味着LFS是最小的操作系统。几个最为重要的软件包在其他系统上并不是必需的。下面列出了使用这些软件的理由。
+      </p>
+      <div class="itemizedlist">
+        <ul>
+          <li>
+            <p>
+              Autoconf
+            </p>
+            <p>
+              这个软件包包含可以用来根据模板生成 configure 脚本的程序。当源码改动的时候往往需要重新生成相应的 configure
+              脚本。
+            </p>
+          </li>
+          <li>
+            <p>
+              Automake
+            </p>
+            <p>
+              这个软件包包含根据模板生成 Makefile 的程序。重新编制包的时候需要此程序。
+            </p>
+          </li>
+          <li>
+            <p>
+              Bash
+            </p>
+            <p>
+              Bourne Shell。提供系统与用户的交互界面。可替换成其他 shell。因为其通用性和良好的可扩展性被选用。
+            </p>
+          </li>
+          <li>
+            <p>
+              Binutils
+            </p>
+            <p>
+              包含汇编器、链接器等其他工具，用于处理对象文件。这个软件包用于编译 LFS 系统中的大部分软件。
+            </p>
+          </li>
+          <li>
+            <p>
+              Bison
+            </p>
+            <p>
+              GNU 版 yacc，一个语法分析器生成器，用于构建其他几个 LFS 系统中的程序。
+            </p>
+          </li>
+          <li>
+            <p>
+              Bzip2
+            </p>
+            <p>
+              用于压缩和解压 .bz2 文件。这个软件被用于解压大部分用于构建 LFS 系统的软件包。
+            </p>
+          </li>
+          <li>
+            <p>
+              Coreutils
+            </p>
+            <p>
+              这个软件包包含一些用于操作和查看文件和文件夹的工具。被用于命令行文件管理。对 LFS 系统安装过程至关重要。
+            </p>
+          </li>
+          <li>
+            <p>
+              DejaGNU
+            </p>
+            <p>
+              这个软件包包含一个用于测试其他程序的框架。只被安装在临时工具链中。
+            </p>
+          </li>
+          <li>
+            <p>
+              Diffutils
+            </p>
+            <p>
+              提供用于比较文件和文件夹不同之处。可以用来生成 patch，并在许多软件的安装流程中被使用。
+            </p>
+          </li>
+          <li>
+            <p>
+              Expect
+            </p>
+            <p>
+              用于测试其他程序。只被安装在临时工具链中。
+            </p>
+          </li>
+          <li>
+            <p>
+              E2fsprogs
+            </p>
+            <p>
+              包含用于处理 ext2、ext3、ext4 文件系统的工具。这些文件系统在 linux 系统中被广泛使用。
+            </p>
+          </li>
+          <li>
+            <p>
+              File
+            </p>
+            <p>
+              用于检测文件类型。几个软件包的编译需要他。
+            </p>
+          </li>
+          <li>
+            <p>
+              Findutils
+            </p>
+            <p>
+              提供用于在文件系统中查找文件的工具。被许多安装脚本调用。
+            </p>
+          </li>
+          <li>
+            <p>
+              Flex
+            </p>
+            <p>
+              词法分析器生成器。GNU 版 lex。被用于一些软件包。
+            </p>
+          </li>
+          <li>
+            <p>
+              Gawk
+            </p>
+            <p>
+              awk 脚本解释器。被安装脚本调用
+            </p>
+          </li>
+          <li>
+            <p>
+              Gcc
+            </p>
+            <p>
+              GNU 编译器集，包含用于编制 LFS 系统的 C 与 C++ 编译器。
+            </p>
+          </li>
+          <li>
+            <p>
+              GDBM
+            </p>
+            <p>
+              GNU 数据管理库。被Man-DB需要。
+            </p>
+          </li>
+          <li>
+            <p>
+              Gettext
+            </p>
+            <p>
+              包含国际化和本地化的库和工具。
+            </p>
+          </li>
+          <li>
+            <p>
+              Glibc
+            </p>
+            <p>
+              标准 C 库，缺了他其他程序基本无法工作。
+            </p>
+          </li>
+          <li>
+            <p>
+              GMP
+            </p>
+            <p>
+              包含数学库提供任意精度计算。用于 Gcc 的构建。
+            </p>
+          </li>
+          <li>
+            <p>
+              Grep
+            </p>
+            <p>
+              用于在文件中查找。大多数安装脚本使用了 grep。
+            </p>
+          </li>
+          <li>
+            <p>
+              Groff
+            </p>
+            <p>
+              包含用于处理和格式化文本的工具。一个重要的功能是格式化 man 手册页。
+            </p>
+          </li>
+          <li>
+            <p>
+              GRUB
+            </p>
+            <p>
+              用于引导系统。
+            </p>
+          </li>
+          <li>
+            <p>
+              Gzip
+            </p>
+            <p>
+              压缩和解压缩 .gz 文件。用于解压缩其他软件包。
+            </p>
+          </li>
+          <li>
+            <p>
+              Iana-etc
+            </p>
+            <p>
+              提供一些网络服务和协议的数据。用于提供网络功能。
+            </p>
+          </li>
+          <li>
+            <p>
+              Inetutils
+            </p>
+            <p>
+              提供基础的网络管理程序。
+            </p>
+          </li>
+          <li>
+            <p>
+              IProute2
+            </p>
+            <p>
+              包含管理基本的和高级的 IPv4 和 IPv6 网络。因为 IPv6 功能被选用
+            </p>
+          </li>
+          <li>
+            <p>
+              Kbd
+            </p>
+            <p>
+              提供键盘映射表，键盘相关的工具用于非标准 US 键盘。还有一些控制台用到的字体。
+            </p>
+          </li>
+          <li>
+            <p>
+              Kmod
+            </p>
+            <p>
+              包含用于管理 Linux 内核模块的程序。
+            </p>
+          </li>
+          <li>
+            <p>
+              Less
+            </p>
+            <p>
+              用于浏览文件，被 Man-DB 使用。
+            </p>
+          </li>
+          <li>
+            <p>
+              Libtool
+            </p>
+            <p>
+              用于构建库
+            </p>
+          </li>
+          <li>
+            <p>
+              Linux Kernel
+            </p>
+            <p>
+              操作系统内核。GNU/Linux 环境的 Linux 。
+            </p>
+          </li>
+          <li>
+            <p>
+              M4
+            </p>
+            <p>
+              通用文本宏处理器，用作其他程序包的编制工具。
+            </p>
+          </li>
+          <li>
+            <p>
+              Make
+            </p>
+            <p>
+              指导程序包编制。被 LFS 中几乎每个程序包需求。
+            </p>
+          </li>
+          <li>
+            <p>
+              Man-DB
+            </p>
+            <p>
+              包含用于查找和查看 man 手册页的工具。使用该软件而不是 <span class=
+              "application">man</span> 是由于他更好的国际化支持。
+            </p>
+          </li>
+          <li>
+            <p>
+              Man-pages
+            </p>
+            <p>
+              提供 Linux 系统 man 手册页的内容。
+            </p>
+          </li>
+          <li>
+            <p>
+              MPC
+            </p>
+            <p>
+              提供复杂数学计算支持。Gcc 安装时需要。
+            </p>
+          </li>
+          <li>
+            <p>
+              MPFR
+            </p>
+            <p>
+              提供多精度数学支持。Gcc 安装时需要。
+            </p>
+          </li>
+          <li>
+            <p>
+              Ncurses
+            </p>
+            <p>
+              提供用于控制字符界面的函数库。经常用于字符菜单。被 LFS 系统中的一些软件使用。
+            </p>
+          </li>
+          <li>
+            <p>
+              Patch
+            </p>
+            <p>
+              根据 <span class="emphasis"><em>patch</em></span>
+              修正或创建文件。<span class="emphasis"><em>patch</em></span>一般由
+              <span class="application">diff</span> 程序创建。在 LFS
+              系统一些软件的安装流程中用到。
+            </p>
+          </li>
+          <li>
+            <p>
+              Perl
+            </p>
+            <p>
+              包含 Perl 语言的解释器。被一些 LFS 系统中的软件的安装或测试流程用到。
+            </p>
+          </li>
+          <li>
+            <p>
+              Procps
+            </p>
+            <p>
+              提供用于监视系统进程的工具。这些工具对系统管理非常有用，并且被 LFS 系统启动脚本使用。
+            </p>
+          </li>
+          <li>
+            <p>
+              Psmisc
+            </p>
+            <p>
+              提供用于显示系统中正在运行的进程的信息的工具。对系统管理非常有用。
+            </p>
+          </li>
+          <li>
+            <p>
+              Readline
+            </p>
+            <p>
+              提供一系列函数库，用于提供命令行编辑和历史查询功能。被 Bash 使用。
+            </p>
+          </li>
+          <li>
+            <p>
+              Sed
+            </p>
+            <p>
+              流文本编辑器。被 LFS 系统大部分软件包的 configure 脚本使用。
+            </p>
+          </li>
+          <li>
+            <p>
+              Shadow
+            </p>
+            <p>
+              提供更安全的系统密码存储。
+            </p>
+          </li>
+          <li>
+            <p>
+              Sysklogd
+            </p>
+            <p>
+              提供用于记录系统日志的程序。
+            </p>
+          </li>
+          <li>
+            <p>
+              Sysvinit
+            </p>
+            <p>
+              提供 <span class="application">init</span> 程序。该进程是 Linux
+              系统中所有进程的父进程。
+            </p>
+          </li>
+          <li>
+            <p>
+              Tar
+            </p>
+            <p>
+              压缩包管理。
+            </p>
+          </li>
+          <li>
+            <p>
+              Tcl
+            </p>
+            <p>
+              提供 Tcl 语言 (Tool Command Language) 支持。在一些测试中用到。只被安装在临时工具链。
+            </p>
+          </li>
+          <li>
+            <p>
+              Texinfo
+            </p>
+            <p>
+              提供 info 页读取、写入、转换的相关程序。在许多 LFS 系统软件包的安装流程中用到。
+            </p>
+          </li>
+          <li>
+            <p>
+              Udev
+            </p>
+            <p>
+              提供一个在用户空间的守护进程，用于动态创建设备节点。
+            </p>
+          </li>
+          <li>
+            <p>
+              Util-linux
+            </p>
+            <p>
+              提供一些实用工具用于系统，硬盘分区，收集信息。
+            </p>
+          </li>
+          <li>
+            <p>
+              Vim
+            </p>
+            <p>
+              Vim 编辑器。可根据个人喜好选择其他编辑器。
+            </p>
+          </li>
+          <li>
+            <p>
+              XZ Utils
+            </p>
+            <p>
+              提供 XZ 或 LZMA 压缩包格式的支持。
+            </p>
+          </li>
+          <li>
+            <p>
+              Zlib
+            </p>
+            <p>
+              为一些程序提供压缩解压支持。
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="standards.html" title="LFS 与标准">上一页</a>
+          <p>
+            LFS 与标准
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="prerequisites.html" title="前提条件">下一页</a>
+          <p>
+            前提条件
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="preface.html" title="序">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      5.10.&nbsp;GCC-4.6.3 - 第二遍
+    </title>
+    <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="lfs" id="lfs-SVN-20120314">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 SVN-20120314
+      </h4>
+      <h3>
+        第&nbsp;5&nbsp;章&nbsp;搭建临时系统
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="binutils-pass2.html" title=
+          "Binutils-2.22 - 第二遍">上一页</a>
+          <p>
+            Binutils-2.22 - 第二遍
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="tcl.html" title="Tcl-8.5.11">下一页</a>
+          <p>
+            Tcl-8.5.11
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;搭建临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-tools-gcc-pass2" name="ch-tools-gcc-pass2"></a>5.10.
+        GCC-4.6.3 - 第二遍
+      </h1>
+      <div class="package" lang="zh-cn" xml:lang="zh-cn">
+        <p>
+          The GCC package contains the GNU compiler collection, which
+          includes the C and C++ compilers.
+        </p>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">预计编制时间:</strong> <span class=
+              "segbody">7.0 SBU</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">需求磁盘空间:</strong> <span class=
+              "segbody">1.5 GB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="installation" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          5.10.1. 安装 GCC
+        </h2>
+        <p>
+          晚于 4.3 版本的 GCC 会将此次编制作为重新定位编译器来对待，不会允许在 <em class=
+          "parameter"><code>--prefix</code></em> 指定的位置搜索起始文件。由于这不是重新定位编译器，而
+          <code class="filename">/tools</code> 中的起始文件对于编制一个链接至 <code class=
+          "filename">/tools</code> 中的库的编译器至关重要，所以应用以下补丁暂时将 GCC 还原到旧的行为：
+        </p>
+        <pre class="userinput">
+<kbd class="command">patch -Np1 -i ../gcc-4.6.3-startfiles_fix-1.patch</kbd>
+</pre>
+        <p>
+          通常情况下 GCC <span class="command"><strong>fixincludes</strong></span>
+          脚本会被运行，来修复潜在损坏的头文件。由于现在 GCC-4.6.3 和 Glibc-2.14.1
+          已经安装好了，它们的头文件都已知不需要修复，就不需要运行 <span class=
+          "command"><strong>fixincludes</strong></span>
+          脚本。事实上，运行这个脚本可能会从宿主系统向 GCC 的私有包含目录安装修复的头文件而污染编制环境。可以执行以下命令来支持运行
+          <span class="command"><strong>fixincludes</strong></span> 脚本：
+        </p>
+        <pre class="userinput">
+<kbd class="command">cp -v gcc/Makefile.in{,.orig}
+sed 's@\./fixinc\.sh@-c true@' gcc/Makefile.in.orig &gt; gcc/Makefile.in</kbd>
+</pre>
+        <p>
+          对于 x86 计算机，引导编制 GCC 使用 <code class=
+          "option">-fomit-frame-pointer</code>
+          编译器标记。非引导编制默认会忽略这个标记，而我们的目标是产生一个和引导过完全一样的编译器。应用以下的 <span class=
+          "command"><strong>sed</strong></span> 命令强制编制使用这个标记：
+        </p>
+        <pre class="userinput">
+<kbd class="command">cp -v gcc/Makefile.in{,.tmp}
+sed 's/^T_CFLAGS =$/&amp; -fomit-frame-pointer/' gcc/Makefile.in.tmp \
+  &gt; gcc/Makefile.in</kbd>
+</pre>
+        <p>
+          The following command will change the location of GCC's default
+          dynamic linker to use the one installed in <code class=
+          "filename">/tools</code>. It also removes <code class=
+          "filename">/usr/include</code> from GCC's include search path.
+          Doing this now rather than adjusting the specs file after
+          installation ensures that the new dynamic linker is used during the
+          actual build of GCC. That is, all of the binaries created during
+          the build will link against the new Glibc. Issue:
+        </p>
+        <pre class="userinput">
+<kbd class="command">for file in \
+ $(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h)
+do
+  cp -uv $file{,.orig}
+  sed -e 's@/lib\(64\)\?\(32\)\?/ld@/tools&amp;@g' \
+  -e 's@/usr@/tools@g' $file.orig &gt; $file
+  echo '
+#undef STANDARD_INCLUDE_DIR
+#define STANDARD_INCLUDE_DIR 0
+#define STANDARD_STARTFILE_PREFIX_1 ""
+#define STANDARD_STARTFILE_PREFIX_2 ""' &gt;&gt; $file
+  touch $file.orig
+done</kbd>
+</pre>
+        <p>
+          In case the above seems hard to follow, let's break it down a bit.
+          First we find all the files under the <code class=
+          "filename">gcc/config</code> directory that are named either
+          <code class="filename">linux.h</code>, <code class=
+          "filename">linux64.h</code> or <code class=
+          "filename">sysv4.h</code>. For each file found, we copy it to a
+          file of the same name but with an added suffix of “<span class=
+          "quote">.orig</span>”. Then the first sed expression prepends
+          “<span class="quote">/tools</span>” to every instance of
+          “<span class="quote">/lib/ld</span>”, “<span class=
+          "quote">/lib64/ld</span>” or “<span class=
+          "quote">/lib32/ld</span>”, while the second one replaces hard-coded
+          instances of “<span class="quote">/usr</span>”. Then we add our
+          define statements which alter the include search path and the
+          default startfile prefix to the end of the file. Finally, we use
+          <span class="command"><strong>touch</strong></span> to update the
+          timestamp on the copied files. When used in conjunction with
+          <span class="command"><strong>cp -u</strong></span>, this prevents
+          unexpected changes to the original files in case the commands are
+          inadvertently run twice.
+        </p>
+        <p>
+          On x86_64, unsetting the multilib spec for GCC ensures that it
+          won't attempt to link against libraries on the host:
+        </p>
+        <pre class="userinput">
+<kbd class="command">case $(uname -m) in
+  x86_64)
+    for file in $(find gcc/config -name t-linux64) ; do \
+      cp -v $file{,.orig}
+      sed '/MULTILIB_OSDIRNAMES/d' $file.orig &gt; $file
+    done
+  ;;
+esac</kbd>
+</pre>
+        <p>
+          As in the first build of GCC it requires the GMP, MPFR and MPC
+          packages. Unpack the tarballs and move them into the required
+          directory names:
+        </p>
+        <pre class="userinput">
+<kbd class="command">tar -jxf ../mpfr-3.1.0.tar.bz2
+mv -v mpfr-3.1.0 mpfr
+tar -Jxf ../gmp-5.0.4.tar.xz
+mv -v gmp-5.0.4 gmp
+tar -zxf ../mpc-0.9.tar.gz
+mv -v mpc-0.9 mpc</kbd>
+</pre>
+        <p>
+          Create a separate build directory again:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir -v ../gcc-build
+cd ../gcc-build</kbd>
+</pre>
+        <p>
+          Before starting to build GCC, remember to unset any environment
+          variables that override the default optimization flags.
+        </p>
+        <p>
+          Now prepare GCC for compilation:
+        </p>
+        <pre class="userinput">
+<kbd class="command">CC="$LFS_TGT-gcc -B/tools/lib/" \
+AR=$LFS_TGT-ar                  \
+RANLIB=$LFS_TGT-ranlib          \
+../gcc-4.6.3/configure          \
+    --prefix=/tools             \
+    --with-local-prefix=/tools  \
+    --enable-clocale=gnu        \
+    --enable-shared             \
+    --enable-threads=posix      \
+    --enable-__cxa_atexit       \
+    --enable-languages=c,c++    \
+    --disable-libstdcxx-pch     \
+    --disable-multilib          \
+    --disable-bootstrap         \
+    --disable-libgomp           \
+    --without-ppl               \
+    --without-cloog             \
+    --with-mpfr-include=$(pwd)/../gcc-4.6.3/mpfr/src \
+    --with-mpfr-lib=$(pwd)/mpfr/src/.libs</kbd>
+</pre>
+        <div class="variablelist">
+          <p class="title">
+            <b>The meaning of the new configure options:</b>
+          </p>
+          <dl>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--enable-clocale=gnu</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                This option ensures the correct locale model is selected for
+                the C++ libraries under all circumstances. If the configure
+                script finds the <span class="emphasis"><em>de_DE</em></span>
+                locale installed, it will select the correct gnu locale
+                model. However, if the <span class=
+                "emphasis"><em>de_DE</em></span> locale is not installed,
+                there is the risk of building Application Binary Interface
+                (ABI)-incompatible C++ libraries because the incorrect
+                generic locale model may be selected.
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--enable-threads=posix</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                This enables C++ exception handling for multi-threaded code.
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--enable-__cxa_atexit</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                This option allows use of <code class=
+                "function">__cxa_atexit</code>, rather than <code class=
+                "function">atexit</code>, to register C++ destructors for
+                local statics and global objects. This option is essential
+                for fully standards-compliant handling of destructors. It
+                also affects the C++ ABI, and therefore results in C++ shared
+                libraries and C++ programs that are interoperable with other
+                Linux distributions.
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--enable-languages=c,c++</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                This option ensures that both the C and C++ compilers are
+                built.
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--disable-libstdcxx-pch</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                Do not build the pre-compiled header (PCH) for <code class=
+                "filename">libstdc++</code>. It takes up a lot of space, and
+                we have no use for it.
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--disable-bootstrap</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                For native builds of GCC, the default is to do a "bootstrap"
+                build. This does not just compile GCC, but compiles it
+                several times. It uses the programs compiled in a first round
+                to compile itself a second time, and then again a third time.
+                The second and third iterations are compared to make sure it
+                can reproduce itself flawlessly. This also implies that it
+                was compiled correctly. However, the LFS build method should
+                provide a solid compiler without the need to bootstrap each
+                time.
+              </p>
+            </dd>
+          </dl>
+        </div>
+        <p>
+          Compile the package:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make</kbd>
+</pre>
+        <p>
+          Install the package:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          As a finishing touch, create a symlink. Many programs and scripts
+          run <span class="command"><strong>cc</strong></span> instead of
+          <span class="command"><strong>gcc</strong></span>, which is used to
+          keep programs generic and therefore usable on all kinds of UNIX
+          systems where the GNU C compiler is not always installed. Running
+          <span class="command"><strong>cc</strong></span> leaves the system
+          administrator free to decide which C compiler to install:
+        </p>
+        <pre class="userinput">
+<kbd class="command">ln -vs gcc /tools/bin/cc</kbd>
+</pre>
+        <div class="admon caution">
+          <img alt="[小心]" src="../images/caution.png" />
+          <h3>
+            小心
+          </h3>
+          <p>
+            At this point, it is imperative to stop and ensure that the basic
+            functions (compiling and linking) of the new toolchain are
+            working as expected. To perform a sanity check, run the following
+            commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">echo 'main(){}' &gt; dummy.c
+cc dummy.c
+readelf -l a.out | grep ': /tools'</kbd>
+</pre>
+          <p>
+            If everything is working correctly, there should be no errors,
+            and the output of the last command will be of the form:
+          </p>
+          <pre class="screen">
+<code class=
+"computeroutput">[Requesting program interpreter: /tools/lib/ld-linux.so.2]</code>
+</pre>
+          <p>
+            Note that <code class="filename">/tools/lib</code>, or
+            <code class="filename">/tools/lib64</code> for 64-bit machines
+            appears as the prefix of the dynamic linker.
+          </p>
+          <p>
+            If the output is not shown as above or there was no output at
+            all, then something is wrong. Investigate and retrace the steps
+            to find out where the problem is and correct it. This issue must
+            be resolved before continuing on. First, perform the sanity check
+            again, using <span class="command"><strong>gcc</strong></span>
+            instead of <span class="command"><strong>cc</strong></span>. If
+            this works, then the <code class="filename">/tools/bin/cc</code>
+            symlink is missing. Install the symlink as per above. Next,
+            ensure that the <code class="envar">PATH</code> is correct. This
+            can be checked by running <span class="command"><strong>echo
+            $PATH</strong></span> and verifying that <code class=
+            "filename">/tools/bin</code> is at the head of the list. If the
+            <code class="envar">PATH</code> is wrong it could mean that you
+            are not logged in as user <code class="systemitem">lfs</code> or
+            that something went wrong back in <a class="xref" href=
+            "../chapter04/settingenvironment.html" title=
+            "4.4.&nbsp;设置工作环境">第&nbsp;4.4&nbsp;节 “设置工作环境.”</a>
+          </p>
+          <p>
+            Once all is well, clean up the test files:
+          </p>
+          <pre class="userinput">
+<kbd class="command">rm -v dummy.c a.out</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="content" lang="zh-cn" xml:lang="zh-cn">
+        <p>
+          Details on this package are located in <a class="xref" href=
+          "../chapter06/gcc.html#contents-gcc" title=
+          "6.17.2.&nbsp;Contents of GCC">第&nbsp;6.17.2&nbsp;节 “Contents of
+          GCC.”</a>
+        </p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="binutils-pass2.html" title=
+          "Binutils-2.22 - 第二遍">上一页</a>
+          <p>
+            Binutils-2.22 - 第二遍
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="tcl.html" title="Tcl-8.5.11">下一页</a>
+          <p>
+            Tcl-8.5.11
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;搭建临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

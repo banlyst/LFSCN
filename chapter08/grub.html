@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      8.4.&nbsp;使用 GRUB 来设置启动流程
+    </title>
+    <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="lfs" id="lfs-SVN-20120314">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 SVN-20120314
+      </h4>
+      <h3>
+        第&nbsp;8&nbsp;章&nbsp;使 LFS 系统可以启动
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="kernel.html" title="Linux-3.2.11">上一页</a>
+          <p>
+            Linux-3.2.11
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../chapter09/chapter09.html" title=
+          "结束">下一页</a>
+          <p>
+            结束
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter08.html" title=
+          "第&nbsp;8&nbsp;章&nbsp;使 LFS 系统可以启动">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-bootable-grub" name="ch-bootable-grub"></a>8.4. 使用 GRUB
+        来设置启动流程
+      </h1>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          8.4.1. 介绍
+        </h2>
+        <div class="admon warning">
+          <img alt="[警告]" src="../images/warning.png" />
+          <h3>
+            警告
+          </h3>
+          <p>
+            错误配置 GRUB
+            会造成你的系统无法操作（启动），除了使用其他的可启动媒介，例如光盘。这一章节不要求你启动你的LFS系统，你只需要修正系统当前的
+            Boot Loader，像 Grub-Legacy, GRUB2, 或者 LILO。
+          </p>
+        </div>
+        <p>
+          确保你有一个应急的可引导磁盘（译者注，光盘Linux也行），这使我们可以在电脑不能启动时进行“<span class=
+          "quote">救援</span>”。如果你没有，可以创建一个。为此，你需要跳到BLFS中，安装 <a class="ulink"
+          href=
+          "http://www.linuxfromscratch.org/blfs/view/svn/multimedia/xorriso.html">
+          xorriso</a>。
+        </p>
+        <pre class="userinput">
+<kbd class="command">cd /tmp &amp;&amp;
+grub-mkrescue --output=grub-img.iso &amp;&amp;
+xorriso -as cdrecord -v dev=/dev/cdrw blank=as_needed grub-img.iso</kbd>
+</pre>
+      </div>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          8.4.2. GRUB 的名称转换
+        </h2>
+        <p>
+          GRUB 使用自己的命名方式来标识硬盘和分区， 比如 <span class=
+          "emphasis"><em>(hdn,m)</em></span>，<span class=
+          "emphasis"><em>n</em></span>是硬盘的编号，<span class=
+          "emphasis"><em>m</em></span>
+          是分区的编号。硬盘的编号从零开始，分区的编号是从1开始（扩展分区的编号从5开始）。注意这与早期的使用0开始的软件版本不同。例如，分区<code class="filename">sda1</code>
+          对于GRUB是 <span class="emphasis"><em>(hd0,1)</em></span>
+          GRUB，<code class="filename">sdb3</code>是 <span class=
+          "emphasis"><em>(hd1,3)</em></span>。与Linux不同的是，GRUB
+          并不将光驱当作硬盘。例如，如果使用一个光驱作为<code class="filename">hdb</code>， 另一个硬盘作为
+          <code class="filename">hdc</code>，那么这个硬盘将是<span class=
+          "emphasis"><em>(hd1)</em></span>。
+        </p>
+        <p>
+          你可以用下面的方法查看GRUB是如何看待你的硬件的：
+        </p>
+        <pre class="userinput">
+<kbd class="command">grub-mkdevicemap --device-map=device.map
+cat device.map</kbd>
+</pre>
+      </div>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          8.4.3. 创建配置
+        </h2>
+        <p>
+          GRUB
+          的工作方式是将信息写入硬盘的开头区域。这个区域不属于任何一个文件系统。这个区域储存的程序会在启动时读取启动分区的GRUB模块。默认位置为
+          /boot/grub/。
+        </p>
+        <p>
+          启动分区的位置是用户的可选配置之一。一个建议是使用一个单独的小分区（建议100M）来作为启动分区。如果这样，你的机子上所有的系统（LFS
+          系统和一些发行版）都可以读取这个分区上相同的配置文件。如果你打算这么做，你需要挂载这个分区，然后将 <code class=
+          "filename">/boot</code> 文件夹
+          （包括你在前面章节编译的的内核）中的东西移动到这个被挂载了的分区。然后卸载这个分区，再重新将其挂载在 <code class=
+          "filename">/boot</code>，并确认你更新了 <code class=
+          "filename">/etc/fstab</code>。
+        </p>
+        <p>
+          使用当前的LFS分区一样没问题， 只是当你配置多系统启动的时候会有些麻烦。
+        </p>
+        <p>
+          根据上面的信息，决定你的根分区（或者启动分区，如果你选择使用一个单独的启动分区）的设计。下面的例子，假设根分区（或者单独的启动分区）是
+          <code class="filename">sda2</code>。
+        </p>
+        <p>
+          安装 GRUB 到<code class="filename">/boot/grub</code> 并设置引导：
+        </p>
+        <div class="admon warning">
+          <img alt="[警告]" src="../images/warning.png" />
+          <h3>
+            警告
+          </h3>
+          <p>
+            下面的命令会覆盖原先的boot loader。如果你不想如此， 不要这么做。例如，如果你使用一个第三方的启动管理器来管理MBR。
+          </p>
+        </div>
+        <pre class="userinput">
+<kbd class="command">grub-install /dev/sda</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[注意]" src="../images/note.png" />
+          <h3>
+            注意
+          </h3>
+          <p>
+            <span class="application">grub-install</span> 是一个脚本，它会调用
+            grub-probe。这个程序可能会失败，并提示 "cannot stat
+            `/dev/root'"。如果这样，创建一个从你的根分区到 /dev/root 的临时符号链接：
+          </p>
+          <pre class="userinput">
+<kbd class="command">ln -sv /dev/sda2 /dev/root</kbd>
+</pre>
+          <p>
+            这个符号链接仅仅会存在于下次重启。它制作用于安装流程。
+          </p>
+        </div>
+      </div>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          8.4.4. 创建配置文件
+        </h2>
+        <p>
+          创建 <code class="filename">/boot/grub/grub.cfg</code>：
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; /boot/grub/grub.cfg &lt;&lt; "EOF"
+<code class="literal"># Begin /boot/grub/grub.cfg
+set default=0
+set timeout=5
+
+insmod ext2
+set root=(hd0,2)
+
+menuentry "GNU/Linux, Linux 3.2.11-lfs-SVN-20120314" {
+        linux   /boot/vmlinuz-3.2.11-lfs-SVN-20120314 root=/dev/sda2 ro
+}</code>
+EOF</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[注意]" src="../images/note.png" />
+          <h3>
+            注意
+          </h3>
+          <p>
+            从 <span class="application">GRUB</span>
+            的角度来看内核文件仅与其所在的分区相关。如果你使用一个单独的启动分区，从 <span class=
+            "emphasis"><em>linux</em></span> 那行删掉/boot。你同时也需要将 <span class=
+            "emphasis"><em>set root</em></span> 改成你的根分区。
+          </p>
+        </div>
+        <p>
+          GRUB是一个很棒的软件，它提供了大量的选项用于不同的设备，操作系统，分区。它也有一些个性化的设置如图形启动界面，启动声音，鼠标输入等等。这些话题超出了这篇介绍的范围。
+        </p>
+        <div class="admon caution">
+          <img alt="[小心]" src="../images/caution.png" />
+          <h3>
+            小心
+          </h3>
+          <p>
+            <span class=
+            "application">grub-mkconfig</span>这个命令可以自动生成一个配置文件。他会调用一系列
+            /etc/grub.d/
+            中的脚本，并覆盖你原先的配置文件。这些脚本起初是为“非源码”发行版准备的，并不建议在LFS系统中使用它们。如果你使用一个商业Linux发行版，那么你有很大机会会用到他们。确保你备份了
+            grub.cfg 文件。
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="kernel.html" title="Linux-3.2.11">上一页</a>
+          <p>
+            Linux-3.2.11
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../chapter09/chapter09.html" title=
+          "结束">下一页</a>
+          <p>
+            结束
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter08.html" title=
+          "第&nbsp;8&nbsp;章&nbsp;使 LFS 系统可以启动">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120314">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
