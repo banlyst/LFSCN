@@ -27,12 +27,12 @@ e381b8506210c794278f5527cba0e765  gzip-1.4.tar.gz
 944f7196a2b3dba2d400e9088576000c  inetutils-1.9.1.tar.gz
 6f814291cc3d7f4312cf8c2c052da5f1  iproute2-3.2.0.tar.xz
 77d0b51454522bc6c170bbdc6e31202a  kbd-1.15.2.tar.gz
-bad08102fad212cd34405136d9a7eb94  kmod-6.tar.xz
+7bd916ae1c8a38e7697fdd8118bc98eb  kmod-7.tar.xz
 56f9f76ffe13f70155f47f6b3c87d421  less-444.tar.gz
-c34241ff6f3b8748ca7864fe7d4c2f0f  lfs-bootscripts-20120229.tar.bz2
+966c9e09234bfea6290a8e65e3ae4c4a  lfs-bootscripts-20120229.tar.bz2
 20896c919eca4acb3d2f13012fb7ba02  libpipeline-1.2.1.tar.gz
 d2f3b7d4627e69e13514a40e72a24d50  libtool-2.4.2.tar.gz
-0e3d5a3dab51b3c36940461582bc06df  linux-3.2.11.tar.xz
+7133f5a2086a7d7ef97abac610c094f5  linux-3.3.tar.xz
 8a7cef47fecab6272eb86a6be6363b2f  m4-1.4.16.tar.bz2
 1a11100f3c63fcf5753818e59d63088f  make-3.82.tar.bz2
 79658e8695c7b9b3be1ee340d78a4692  man-db-2.6.1.tar.gz
@@ -52,8 +52,8 @@ e053094e8103165f98ddafe828f6ae4b  sysklogd-1.5.tar.gz
 2cee42a2ff4f1cd4f9298eeeb2264519  tar-1.26.tar.bz2
 b01a9691c83990b3db0ce62d1012ca67  tcl8.5.11-src.tar.gz
 71ba711519209b5fb583fed2b3d86fcb  texinfo-4.13a.tar.gz
-0d7af750702620a871b9f9b98d8ad859  udev-181.tar.xz
-f2d0d0d8c3d8e28a4118744610eb188c  udev-config-20100128.tar.bz2
+023877e6cc0d907994b8c648beab542b  udev-182.tar.xz
+95a03161e1240128c2ac0cf55146ba49  udev-config-20100128.tar.bz2
 208aa058f4117759d2939d1be7d662fc  util-linux-2.21.tar.xz
 5b9510a17074e2b37d8bb38ae09edbf2  vim-7.3.tar.bz2
 8d900b742b94fa9e708ca4f5a4b29003  xz-5.0.3.tar.bz2
