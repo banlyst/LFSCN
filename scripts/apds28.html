@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120320">
+  <body class="lfs" id="lfs-SVN-20120322">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120320
+        Linux From Scratch - 版本 SVN-20120322
       </h4>
       <h3>
-        附录&nbsp;D.&nbsp;Boot and sysconfig scripts version-20120229
+        附录&nbsp;D.&nbsp;Boot and sysconfig scripts version-20120322
       </h3>
       <ul>
         <li class="prev">
@@ -35,11 +35,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="scripts.html" title=
-          "附录&nbsp;D.&nbsp;Boot and sysconfig scripts version-20120229">上一级</a>
+          "附录&nbsp;D.&nbsp;Boot and sysconfig scripts version-20120322">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120320">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
         </li>
       </ul>
     </div>
@@ -93,7 +93,7 @@ fi
 
 case "${2}" in
    up)
-      if [ "$(ip addr show ${1} 2&gt;/dev/null | grep ${IP})" == "" ]; then
+      if [ "$(ip addr show ${1} 2&gt;/dev/null | grep ${IP}/)" == "" ]; then
          
          # Cosmetic output not needed for multiple services
          if ! $(echo ${SERVICE} | grep -q " "); then 
@@ -120,7 +120,7 @@ case "${2}" in
    ;;
 
    down)
-      if [ "$(ip addr show ${1} 2&gt;/dev/null | grep ${IP})" != "" ]; then
+      if [ "$(ip addr show ${1} 2&gt;/dev/null | grep ${IP}/)" != "" ]; then
          log_info_msg "Removing IPv4 address ${IP} from the ${1} interface..."
          ip addr del ${args} dev ${1}
          evaluate_retval
@@ -162,11 +162,11 @@ esac
         </li>
         <li class="up">
           <a accesskey="u" href="scripts.html" title=
-          "附录&nbsp;D.&nbsp;Boot and sysconfig scripts version-20120229">上一级</a>
+          "附录&nbsp;D.&nbsp;Boot and sysconfig scripts version-20120322">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120320">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
         </li>
       </ul>
     </div>
