@@ -4,17 +4,17 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.9.&nbsp;Glibc-2.14.1
+      6.9.&nbsp;Glibc-2.15
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120322">
+  <body class="lfs" id="lfs-SVN-20120328">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120322
+        Linux From Scratch - 版本 SVN-20120328
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
@@ -22,9 +22,9 @@
       <ul>
         <li class="prev">
           <a accesskey="p" href="man-pages.html" title=
-          "Man-pages-3.37">上一页</a>
+          "Man-pages-3.38">上一页</a>
           <p>
-            Man-pages-3.37
+            Man-pages-3.38
           </p>
         </li>
         <li class="next">
@@ -40,13 +40,13 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-glibc" name="ch-system-glibc"></a>6.9. Glibc-2.14.1
+        <a id="ch-system-glibc" name="ch-system-glibc"></a>6.9. Glibc-2.15
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
@@ -138,25 +138,10 @@ unset DL</kbd>
 <kbd class="command">sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in</kbd>
 </pre>
         <p>
-          Fix a couple of bugs in Glibc that can cause crashes and core
-          dumps:
+          Fix a bug that prevents Glibc from building with GCC-4.7.0:
         </p>
         <pre class="userinput">
-<kbd class="command">patch -Np1 -i ../glibc-2.14.1-fixes-1.patch
-patch -Np1 -i ../glibc-2.14.1-sort-1.patch</kbd>
-</pre>
-        <p>
-          Fix a bug that prevents Glibc from building with GCC-4.6.3:
-        </p>
-        <pre class="userinput">
-<kbd class="command">patch -Np1 -i ../glibc-2.14.1-gcc_fix-1.patch</kbd>
-</pre>
-        <p>
-          Fix a stack imbalance that occurs under some conditions:
-        </p>
-        <pre class="userinput">
-<kbd class="command">sed -i '195,213 s/PRIVATE_FUTEX/FUTEX_CLOCK_REALTIME/' \
-nptl/sysdeps/unix/sysv/linux/x86_64/pthread_rwlock_timed{rd,wr}lock.S</kbd>
+<kbd class="command">patch -Np1 -i ../glibc-2.15-gcc_fix-1.patch</kbd>
 </pre>
         <p>
           The Glibc documentation recommends building Glibc outside of the
@@ -181,7 +166,7 @@ esac</kbd>
           Prepare Glibc for compilation:
         </p>
         <pre class="userinput">
-<kbd class="command">../glibc-2.14.1/configure  \
+<kbd class="command">../glibc-2.15/configure  \
     --prefix=/usr          \
     --disable-profile      \
     --enable-add-ons       \
@@ -229,7 +214,7 @@ esac</kbd>
           results:
         </p>
         <pre class="userinput">
-<kbd class="command">cp -v ../glibc-2.14.1/iconvdata/gconv-modules iconvdata
+<kbd class="command">cp -v ../glibc-2.15/iconvdata/gconv-modules iconvdata
 make -k check 2&gt;&amp;1 | tee glibc-check-log
 grep Error glibc-check-log</kbd>
 </pre>
@@ -308,9 +293,9 @@ grep Error glibc-check-log</kbd>
           default; these are required by several BLFS packages:
         </p>
         <pre class="userinput">
-<kbd class="command">cp -v ../glibc-2.14.1/sunrpc/rpc/*.h /usr/include/rpc
-cp -v ../glibc-2.14.1/sunrpc/rpcsvc/*.h /usr/include/rpcsvc
-cp -v ../glibc-2.14.1/nis/rpcsvc/*.h /usr/include/rpcsvc</kbd>
+<kbd class="command">cp -v ../glibc-2.15/sunrpc/rpc/*.h /usr/include/rpc
+cp -v ../glibc-2.15/sunrpc/rpcsvc/*.h /usr/include/rpcsvc
+cp -v ../glibc-2.15/nis/rpcsvc/*.h /usr/include/rpcsvc</kbd>
 </pre>
         <p>
           The locales that can make the system respond in a different
@@ -357,9 +342,9 @@ localedef -i zh_CN -f GB18030 zh_CN.GB18030</kbd>
         </p>
         <p>
           Alternatively, install all locales listed in the <code class=
-          "filename">glibc-2.14.1/localedata/SUPPORTED</code> file (it
-          includes every locale listed above and many more) at once with the
-          following time-consuming command:
+          "filename">glibc-2.15/localedata/SUPPORTED</code> file (it includes
+          every locale listed above and many more) at once with the following
+          time-consuming command:
         </p>
         <pre class="userinput">
 <kbd class="command">make localedata/install-locales</kbd>
@@ -368,7 +353,7 @@ localedef -i zh_CN -f GB18030 zh_CN.GB18030</kbd>
           Then use the <span class=
           "command"><strong>localedef</strong></span> command to create and
           install locales not listed in the <code class=
-          "filename">glibc-2.14.1/localedata/SUPPORTED</code> file in the
+          "filename">glibc-2.15/localedata/SUPPORTED</code> file in the
           unlikely case you need them.
         </p>
       </div>
@@ -910,8 +895,8 @@ mkdir /etc/ld.so.conf.d</kbd>
                     Used internally by Glibc as a gross hack to get broken
                     programs (e.g., some Motif applications) running. See
                     comments in <code class=
-                    "filename">glibc-2.14.1/locale/broken_cur_max.c</code>
-                    for more information
+                    "filename">glibc-2.15/locale/broken_cur_max.c</code> for
+                    more information
                   </p>
                 </td>
               </tr>
@@ -1216,9 +1201,9 @@ mkdir /etc/ld.so.conf.d</kbd>
       <ul>
         <li class="prev">
           <a accesskey="p" href="man-pages.html" title=
-          "Man-pages-3.37">上一页</a>
+          "Man-pages-3.38">上一页</a>
           <p>
-            Man-pages-3.37
+            Man-pages-3.38
           </p>
         </li>
         <li class="next">
@@ -1234,7 +1219,7 @@ mkdir /etc/ld.so.conf.d</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>

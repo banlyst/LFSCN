@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120322">
+  <body class="lfs" id="lfs-SVN-20120328">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120322
+        Linux From Scratch - 版本 SVN-20120328
       </h4>
       <h3>
         第&nbsp;2&nbsp;章&nbsp;准备新分区
@@ -39,7 +39,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>
@@ -92,20 +92,20 @@
           "option">filetype</code>、<code class=
           "option">sparse_super</code>、<code class="option">large_file</code>
           或 <code class="option">needs_recovery</code>
-          之外的选项，你的素质可能就有自定义增强。这样的话，为了防止以后出问题，你应该编译一下 E2fsprogs
+          之外的选项，你的宿主可能就有自定义增强。这样的话，为了防止以后出问题，你应该编译一下 E2fsprogs
           程序包并使用产生的二进制来重新创建 LFS 分区上的文件系统：
         </p>
         <pre class="userinput">
 <kbd class="command">cd /tmp
-tar -xzvf /path/to/sources/e2fsprogs-1.42.tar.gz
-cd e2fsprogs-1.42
+tar -xzvf /path/to/sources/e2fsprogs-1.42.1.tar.gz
+cd e2fsprogs-1.42.1
 mkdir -v build
 cd build
 ../configure
 make #注意我们在这里并不make install！
 ./misc/mke2fs -jv /dev/<em class="replaceable"><code>&lt;xxx&gt;</code></em>
 cd /tmp
-rm -rfv e2fsprogs-1.42</kbd>
+rm -rfv e2fsprogs-1.42.1</kbd>
 </pre>
       </div>
       <p>
@@ -142,7 +142,7 @@ rm -rfv e2fsprogs-1.42</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>

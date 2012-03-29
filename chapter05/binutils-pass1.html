@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120322">
+  <body class="lfs" id="lfs-SVN-20120328">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120322
+        Linux From Scratch - 版本 SVN-20120328
       </h4>
       <h3>
         第&nbsp;5&nbsp;章&nbsp;搭建临时系统
@@ -29,9 +29,9 @@
         </li>
         <li class="next">
           <a accesskey="n" href="gcc-pass1.html" title=
-          "GCC-4.6.3 - 第一遍">下一页</a>
+          "GCC-4.7.0 - 第一遍">下一页</a>
           <p>
-            GCC-4.6.3 - 第一遍
+            GCC-4.7.0 - 第一遍
           </p>
         </li>
         <li class="up">
@@ -40,7 +40,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>
@@ -83,6 +83,12 @@
           Binutils 作为第一个编译的程序包很重要，因为 GCC 和 Glibc
           都会对汇编器和链接器进行特性测试来决定要启用禁用他们自己的哪些特性。
         </p>
+        <p>
+          应用一个补丁防止使用编译器调节时编制失败：
+        </p>
+        <pre class="userinput">
+<kbd class="command">patch -Np1 -i ../binutils-2.22-build_fix-1.patch</kbd>
+</pre>
         <p>
           Binutils 文档推荐在源代码目录外创建目录编制 Binutils：
         </p>
@@ -213,9 +219,9 @@ esac</kbd>
         </li>
         <li class="next">
           <a accesskey="n" href="gcc-pass1.html" title=
-          "GCC-4.6.3 - 第一遍">下一页</a>
+          "GCC-4.7.0 - 第一遍">下一页</a>
           <p>
-            GCC-4.6.3 - 第一遍
+            GCC-4.7.0 - 第一遍
           </p>
         </li>
         <li class="up">
@@ -224,7 +230,7 @@ esac</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>

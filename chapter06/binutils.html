@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120322">
+  <body class="lfs" id="lfs-SVN-20120328">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120322
+        Linux From Scratch - 版本 SVN-20120328
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
@@ -38,7 +38,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>
@@ -101,12 +101,19 @@ Ask your system administrator to create more.</code>
 sed -i.bak '/^INFO/s/standards.info //' etc/Makefile.in</kbd>
 </pre>
         <p>
-          Fix a couple of the tests, which fail when using GCC-4.6.3
+          Fix a couple of the tests, which fail when using GCC-4.7.0
         </p>
         <pre class="userinput">
 <kbd class=
 "command">sed -i "/exception_defines.h/d" ld/testsuite/ld-elf/new.cc
 sed -i "s/-fvtable-gc //" ld/testsuite/ld-selective/selective.exp</kbd>
+</pre>
+        <p>
+          Apply a patch to prevent a build failure when using compiler
+          optimizations:
+        </p>
+        <pre class="userinput">
+<kbd class="command">patch -Np1 -i ../binutils-2.22-build_fix-1.patch</kbd>
 </pre>
         <p>
           The Binutils documentation recommends building Binutils outside of
@@ -530,7 +537,7 @@ cd ../binutils-build</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>

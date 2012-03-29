@@ -4,17 +4,17 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.17.&nbsp;GCC-4.6.3
+      6.17.&nbsp;GCC-4.7.0
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120322">
+  <body class="lfs" id="lfs-SVN-20120328">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120322
+        Linux From Scratch - 版本 SVN-20120328
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
@@ -38,13 +38,13 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-gcc" name="ch-system-gcc"></a>6.17. GCC-4.6.3
+        <a id="ch-system-gcc" name="ch-system-gcc"></a>6.17. GCC-4.7.0
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
@@ -80,7 +80,7 @@
 </pre>
         <p>
           As in <a class="xref" href="../chapter05/gcc-pass2.html" title=
-          "5.10.&nbsp;GCC-4.6.3 - 第二遍">第&nbsp;5.10&nbsp;节 “GCC-4.6.3 -
+          "5.10.&nbsp;GCC-4.7.0 - 第二遍">第&nbsp;5.10&nbsp;节 “GCC-4.7.0 -
           第二遍”</a>, apply the following <span class=
           "command"><strong>sed</strong></span> to force the build to use the
           <code class="option">-fomit-frame-pointer</code> compiler flag in
@@ -114,7 +114,7 @@ cd ../gcc-build</kbd>
           Prepare GCC for compilation:
         </p>
         <pre class="userinput">
-<kbd class="command">../gcc-4.6.3/configure --prefix=/usr            \
+<kbd class="command">../gcc-4.7.0/configure --prefix=/usr            \
                        --libexecdir=/usr/lib    \
                        --enable-shared          \
                        --enable-threads=posix   \
@@ -180,7 +180,7 @@ cd ../gcc-build</kbd>
           To receive a summary of the test suite results, run:
         </p>
         <pre class="userinput">
-<kbd class="command">../gcc-4.6.3/contrib/test_summary</kbd>
+<kbd class="command">../gcc-4.7.0/contrib/test_summary</kbd>
 </pre>
         <p>
           For only the summaries, pipe the output through <strong class=
@@ -256,9 +256,9 @@ readelf -l a.out | grep ': /lib'</kbd>
         </p>
         <pre class="screen">
 <code class=
-"computeroutput">/usr/lib/gcc/i686-pc-linux-gnu/4.6.3/../../../crt1.o succeeded
-/usr/lib/gcc/i686-pc-linux-gnu/4.6.3/../../../crti.o succeeded
-/usr/lib/gcc/i686-pc-linux-gnu/4.6.3/../../../crtn.o succeeded</code>
+"computeroutput">/usr/lib/gcc/i686-pc-linux-gnu/4.7.0/../../../crt1.o succeeded
+/usr/lib/gcc/i686-pc-linux-gnu/4.7.0/../../../crti.o succeeded
+/usr/lib/gcc/i686-pc-linux-gnu/4.7.0/../../../crtn.o succeeded</code>
 </pre>
         <p>
           Depending on your machine architecture, the above may differ
@@ -283,8 +283,8 @@ readelf -l a.out | grep ': /lib'</kbd>
         <pre class="screen">
 <code class="computeroutput">#include &lt;...&gt; search starts here:
  /usr/local/include
- /usr/lib/gcc/i686-pc-linux-gnu/4.6.3/include
- /usr/lib/gcc/i686-pc-linux-gnu/4.6.3/include-fixed
+ /usr/lib/gcc/i686-pc-linux-gnu/4.7.0/include
+ /usr/lib/gcc/i686-pc-linux-gnu/4.7.0/include-fixed
  /usr/include</code>
 </pre>
         <p>
@@ -379,6 +379,19 @@ SEARCH_DIR("/usr/lib");</code>
         <pre class="userinput">
 <kbd class="command">rm -v dummy.c a.out dummy.log</kbd>
 </pre>
+        <p>
+          Finally, move a misplced file:
+        </p>
+        <pre class="userinput">
+<kbd class="command">case `uname -m` in
+  i?86) GDBDIR=/usr/share/gdb/auto-load/usr/lib/gcc/i686-pc-linux-gnu/4.7.0/     ;;
+  *)    GDBDIR=/usr/share/gdb/auto-load/usr/lib64/gcc/x86_64-pc-linux-gnu/4.7.0/ ;;
+esac
+
+mkdir -pv $GDBDIR
+mv -v /usr/lib/*gdb.py $GDBDIR
+unset GDBDIR</kbd>
+</pre>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
@@ -401,7 +414,7 @@ SEARCH_DIR("/usr/lib");</code>
             <div class="seg">
               <strong class="segtitle">Installed directories:</strong>
               <span class="segbody">/usr/include/c++, /usr/lib/gcc,
-              /usr/share/gcc-4.6.3</span>
+              /usr/share/gcc-4.7.0</span>
             </div>
           </div>
         </div>
@@ -659,7 +672,7 @@ SEARCH_DIR("/usr/lib");</code>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>

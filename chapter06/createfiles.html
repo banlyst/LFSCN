@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120322">
+  <body class="lfs" id="lfs-SVN-20120328">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120322
+        Linux From Scratch - 版本 SVN-20120328
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
@@ -40,7 +40,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>
@@ -170,19 +170,29 @@ EOF</kbd>
         give them proper permissions:
       </p>
       <pre class="userinput">
-<kbd class="command">touch /var/run/utmp /var/log/{btmp,lastlog,wtmp}
+<kbd class="command">touch /var/log/{btmp,lastlog,wtmp}
 chgrp -v utmp /var/run/utmp /var/log/lastlog
 chmod -v 664 /var/run/utmp /var/log/lastlog
-chmod -v 660 /var/log/btmp</kbd>
+chmod -v 600 /var/log/btmp</kbd>
 </pre>
       <p>
-        The <code class="filename">/var/run/utmp</code> file records the
-        users that are currently logged in. The <code class=
-        "filename">/var/log/wtmp</code> file records all logins and logouts.
-        The <code class="filename">/var/log/lastlog</code> file records when
-        each user last logged in. The <code class=
-        "filename">/var/log/btmp</code> file records the bad login attempts.
+        The <code class="filename">/var/log/wtmp</code> file records all
+        logins and logouts. The <code class=
+        "filename">/var/log/lastlog</code> file records when each user last
+        logged in. The <code class="filename">/var/log/btmp</code> file
+        records the bad login attempts.
       </p>
+      <div class="admon note">
+        <img alt="[注意]" src="../images/note.png" />
+        <h3>
+          注意
+        </h3>
+        <p>
+          The <code class="filename">/run/utmp</code> file records the users
+          that are currently logged in. This file is created dynamically in
+          the boot scripts.
+        </p>
+      </div>
     </div>
     <div class="navfooter">
       <ul>
@@ -206,7 +216,7 @@ chmod -v 660 /var/log/btmp</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>

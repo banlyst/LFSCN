@@ -4,17 +4,17 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      5.10.&nbsp;GCC-4.6.3 - 第二遍
+      5.10.&nbsp;GCC-4.7.0 - 第二遍
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120322">
+  <body class="lfs" id="lfs-SVN-20120328">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120322
+        Linux From Scratch - 版本 SVN-20120328
       </h4>
       <h3>
         第&nbsp;5&nbsp;章&nbsp;搭建临时系统
@@ -39,14 +39,14 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
         <a id="ch-tools-gcc-pass2" name="ch-tools-gcc-pass2"></a>5.10.
-        GCC-4.6.3 - 第二遍
+        GCC-4.7.0 - 第二遍
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
@@ -76,11 +76,11 @@
           "filename">/tools</code> 中的库的编译器至关重要，所以应用以下补丁暂时将 GCC 还原到旧的行为：
         </p>
         <pre class="userinput">
-<kbd class="command">patch -Np1 -i ../gcc-4.6.3-startfiles_fix-1.patch</kbd>
+<kbd class="command">patch -Np1 -i ../gcc-4.7.0-startfiles_fix-1.patch</kbd>
 </pre>
         <p>
           通常情况下 GCC <span class="command"><strong>fixincludes</strong></span>
-          脚本会被运行，来修复潜在损坏的头文件。由于现在 GCC-4.6.3 和 Glibc-2.14.1
+          脚本会被运行，来修复潜在损坏的头文件。由于现在 GCC-4.7.0 和 Glibc-2.15
           已经安装好了，它们的头文件都已知不需要修复，就不需要运行 <span class=
           "command"><strong>fixincludes</strong></span>
           脚本。事实上，运行这个脚本可能会从宿主系统向 GCC 的私有包含目录安装修复的头文件而污染编制环境。可以执行以下命令来支持运行
@@ -115,9 +115,9 @@ do
   sed -e 's@/lib\(64\)\?\(32\)\?/ld@/tools&amp;@g' \
   -e 's@/usr@/tools@g' $file.orig &gt; $file
   echo '
-#undef STANDARD_INCLUDE_DIR
-#define STANDARD_INCLUDE_DIR 0
-#define STANDARD_STARTFILE_PREFIX_1 ""
+#undef STANDARD_STARTFILE_PREFIX_1
+#undef STANDARD_STARTFILE_PREFIX_2
+#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib"
 #define STANDARD_STARTFILE_PREFIX_2 ""' &gt;&gt; $file
   touch $file.orig
 done</kbd>
@@ -177,7 +177,7 @@ cd ../gcc-build</kbd>
 <kbd class="command">CC="$LFS_TGT-gcc -B/tools/lib/" \
 AR=$LFS_TGT-ar                  \
 RANLIB=$LFS_TGT-ranlib          \
-../gcc-4.6.3/configure          \
+../gcc-4.7.0/configure          \
     --prefix=/tools             \
     --with-local-prefix=/tools  \
     --enable-clocale=gnu        \
@@ -191,7 +191,7 @@ RANLIB=$LFS_TGT-ranlib          \
     --disable-libgomp           \
     --without-ppl               \
     --without-cloog             \
-    --with-mpfr-include=$(pwd)/../gcc-4.6.3/mpfr/src \
+    --with-mpfr-include=$(pwd)/../gcc-4.7.0/mpfr/src \
     --with-mpfr-lib=$(pwd)/mpfr/src/.libs</kbd>
 </pre>
         <div class="variablelist">
@@ -360,7 +360,7 @@ readelf -l a.out | grep ': /tools'</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>

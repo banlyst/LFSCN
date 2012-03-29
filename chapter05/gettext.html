@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120322">
+  <body class="lfs" id="lfs-SVN-20120328">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120322
+        Linux From Scratch - 版本 SVN-20120328
       </h4>
       <h3>
         第&nbsp;5&nbsp;章&nbsp;搭建临时系统
@@ -38,7 +38,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>
@@ -49,10 +49,8 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The Gettext package contains utilities for internationalization and
-          localization. These allow programs to be compiled with NLS (Native
-          Language Support), enabling them to output messages in the user's
-          native language.
+          Gettext 程序包包含用于国际化和本地化的工具。这些工具允许程序带有 NLS (本土语言支持)
+          编译，使它们能够以用户的本土语言输出消息。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -69,14 +67,13 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          5.23.1. Installation of Gettext
+          5.23.1. 安装 Gettext
         </h2>
         <p>
-          For our temporary set of tools, we only need to build and install
-          one binary from Gettext.
+          对于我们的临时工具，我们只需要编制安装 Gettext 的一个二进制。
         </p>
         <p>
-          Prepare Gettext for compilation:
+          准备编译 Gettext：
         </p>
         <pre class="userinput">
 <kbd class="command">cd gettext-tools
@@ -84,7 +81,7 @@ EMACS="no" ./configure --prefix=/tools --disable-shared</kbd>
 </pre>
         <div class="variablelist">
           <p class="title">
-            <b>The meaning of the configure option:</b>
+            <b>配置选项的含义：</b>
           </p>
           <dl>
             <dt>
@@ -93,9 +90,7 @@ EMACS="no" ./configure --prefix=/tools --disable-shared</kbd>
             </dt>
             <dd>
               <p>
-                This prevents the configure script from determining where to
-                install Emacs Lisp files as the test is known to hang on some
-                hosts.
+                此项防止配置脚本获知安装 Emacs Lisp 文件的位置，因为测试已知在某些宿主上会挂起。
               </p>
             </dd>
             <dt>
@@ -104,28 +99,23 @@ EMACS="no" ./configure --prefix=/tools --disable-shared</kbd>
             </dt>
             <dd>
               <p>
-                We do not need to install any of the shared Gettext libraries
-                at this time, therefore there is no need to build them.
+                我们现在不需要安装任何的 Gettext 共享库，也就不必编制。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译程序包：
         </p>
         <pre class="userinput">
 <kbd class="command">make -C gnulib-lib
 make -C src msgfmt</kbd>
 </pre>
         <p>
-          As only one binary has been compiled, it is not possible to run the
-          test suite without compiling additional support libraries from the
-          Gettext package. It is therefore not recommended to attempt to run
-          the test suite at this stage.
+          因为只编译了一个二进制，就不可能在不编译 Gettext 程序包中额外支持库的前提下运行测试套件。因此在此处不推荐尝试运行测试套件。
         </p>
         <p>
-          Install the <span class="command"><strong>msgfmt</strong></span>
-          binary:
+          安装 <span class="command"><strong>msgfmt</strong></span> 二进制：
         </p>
         <pre class="userinput">
 <kbd class="command">cp -v src/msgfmt /tools/bin</kbd>
@@ -133,10 +123,9 @@ make -C src msgfmt</kbd>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Details on this package are located in <a class="xref" href=
+          有关此程序包的细节位于<a class="xref" href=
           "../chapter06/gettext.html#contents-gettext" title=
-          "6.42.2.&nbsp;Contents of Gettext">第&nbsp;6.42.2&nbsp;节 “Contents
-          of Gettext.”</a>
+          "6.42.2.&nbsp;Gettext 的内容">第&nbsp;6.42.2&nbsp;节 “Gettext 的内容”</a>。
         </p>
       </div>
     </div>
@@ -160,7 +149,7 @@ make -C src msgfmt</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120322">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120328">起始页</a>
         </li>
       </ul>
     </div>
