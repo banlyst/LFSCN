@@ -70,17 +70,17 @@
           5.9.1. 安装 Binutils
         </h2>
         <p>
+          应用一个补丁防止使用编译器调节时编制失败：
+        </p>
+        <pre class="userinput">
+<kbd class="command">patch -Np1 -i ../binutils-2.22-build_fix-1.patch</kbd>
+</pre>
+        <p>
           再创建一个独立的编制目录：
         </p>
         <pre class="userinput">
 <kbd class="command">mkdir -v ../binutils-build
 cd ../binutils-build</kbd>
-</pre>
-        <p>
-          应用一个补丁防止使用编译器调节时编制失败：
-        </p>
-        <pre class="userinput">
-<kbd class="command">patch -Np1 -i ../binutils-2.22-build_fix-1.patch</kbd>
 </pre>
         <p>
           准备编译 Binutils：

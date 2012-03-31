@@ -171,9 +171,9 @@ EOF</kbd>
       </p>
       <pre class="userinput">
 <kbd class="command">touch /var/log/{btmp,lastlog,wtmp}
-chgrp -v utmp /var/run/utmp /var/log/lastlog
-chmod -v 664 /var/run/utmp /var/log/lastlog
-chmod -v 600 /var/log/btmp</kbd>
+chgrp -v utmp /var/log/lastlog
+chmod -v 664  /var/log/lastlog
+chmod -v 600  /var/log/btmp</kbd>
 </pre>
       <p>
         The <code class="filename">/var/log/wtmp</code> file records all
