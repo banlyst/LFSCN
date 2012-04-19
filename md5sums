@@ -1,5 +1,5 @@
 864d785215aa60d627c91fcb21b05b07  autoconf-2.68.tar.bz2
-d1dd41acf56a30d8da7bf20c5ac223db  automake-1.11.4.tar.xz
+13f6a9522339ac0885110506cb7abad8  automake-1.11.5.tar.xz
 3fb927c7c33022f1c327f14a81c0d4b0  bash-4.2.tar.gz
 ee0f10756c84979622b992a4a61ea3f5  binutils-2.22.tar.bz2
 9dba20116b13fc61a0846b0058fbe004  bison-2.5.tar.bz2
@@ -29,10 +29,10 @@ e381b8506210c794278f5527cba0e765  gzip-1.4.tar.gz
 77d0b51454522bc6c170bbdc6e31202a  kbd-1.15.2.tar.gz
 7bd916ae1c8a38e7697fdd8118bc98eb  kmod-7.tar.xz
 56f9f76ffe13f70155f47f6b3c87d421  less-444.tar.gz
-aebda2c3f3e0cebbe9158c41b72ce492  lfs-bootscripts-20120322.tar.bz2
+bdc3de7fa0c2e0596b5b774c44fea2fd  lfs-bootscripts-20120409.tar.bz2
 20896c919eca4acb3d2f13012fb7ba02  libpipeline-1.2.1.tar.gz
 d2f3b7d4627e69e13514a40e72a24d50  libtool-2.4.2.tar.gz
-eb31735968d1ac9a431322089f7bc3a3  linux-3.3.1.tar.xz
+aa9b07bbd30ed38607a30795e7628ccf  linux-3.3.2.tar.xz
 8a7cef47fecab6272eb86a6be6363b2f  m4-1.4.16.tar.bz2
 1a11100f3c63fcf5753818e59d63088f  make-3.82.tar.bz2
 79658e8695c7b9b3be1ee340d78a4692  man-db-2.6.1.tar.gz
