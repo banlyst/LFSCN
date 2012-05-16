@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
-        第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
+        第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
@@ -34,11 +34,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
@@ -48,7 +48,8 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          GCC 程序包包含 GNU 编译器集，其中包括 C 和 C++ 编译器。
+          The GCC package contains the GNU compiler collection, which
+          includes the C and C++ compilers.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -80,7 +81,7 @@
 </pre>
         <p>
           As in <a class="xref" href="../chapter05/gcc-pass2.html" title=
-          "5.10.&nbsp;GCC-4.7.0 - 第二遍">第&nbsp;5.10&nbsp;节 “GCC-4.7.0 -
+          "5.9.&nbsp;GCC-4.7.0 - 第二遍">第&nbsp;5.9&nbsp;节 “GCC-4.7.0 -
           第二遍”</a>, apply the following <span class=
           "command"><strong>sed</strong></span> to force the build to use the
           <code class="option">-fomit-frame-pointer</code> compiler flag in
@@ -90,17 +91,6 @@
 <kbd class="command">case `uname -m` in
   i?86) sed -i 's/^T_CFLAGS =$/&amp; -fomit-frame-pointer/' gcc/Makefile.in ;;
 esac</kbd>
-</pre>
-        <p>
-          The <span class="command"><strong>fixincludes</strong></span>
-          script is known to occasionally erroneously attempt to "fix" the
-          system headers installed so far. As the headers up to this point
-          are known to not require fixing, issue the following command to
-          prevent the <span class=
-          "command"><strong>fixincludes</strong></span> script from running:
-        </p>
-        <pre class="userinput">
-<kbd class="command">sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in</kbd>
 </pre>
         <p>
           The GCC documentation recommends building GCC outside of the source
@@ -389,7 +379,8 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-gcc" name="contents-gcc"></a>6.17.2. GCC 的内容
+          <a id="contents-gcc" name="contents-gcc"></a>6.17.2. Contents of
+          GCC
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -662,11 +653,11 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>

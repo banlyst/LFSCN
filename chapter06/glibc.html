@@ -11,36 +11,36 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
-        第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
+        第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
           <a accesskey="p" href="man-pages.html" title=
-          "Man-pages-3.38">上一页</a>
+          "Man-pages-3.41">上一页</a>
           <p>
-            Man-pages-3.38
+            Man-pages-3.41
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="readjusting.html" title=
-          "Re-adjusting the Toolchain">下一页</a>
+          <a accesskey="n" href="adjusting.html" title=
+          "Adjusting the Toolchain">下一页</a>
           <p>
-            Re-adjusting the Toolchain
+            Adjusting the Toolchain
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
@@ -50,7 +50,10 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Glibc 程序包包含主要的 C 库。此库提供用于分配内存、搜索目录、开关读写文件、字符串处理、表达式匹配、算术等的基本途径。
+          The Glibc package contains the main C library. This library
+          provides the basic routines for allocating memory, searching
+          directories, opening and closing files, reading and writing files,
+          string handling, pattern matching, arithmetic, and so on.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -136,6 +139,12 @@ unset DL</kbd>
         </p>
         <pre class="userinput">
 <kbd class="command">sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in</kbd>
+</pre>
+        <p>
+          Fix a bug that causes several BLFS packages to segfault:
+        </p>
+        <pre class="userinput">
+<kbd class="command">patch -Np1 -i ../glibc-2.15-fixes-1.patch</kbd>
 </pre>
         <p>
           Fix a bug that prevents Glibc from building with GCC-4.7.0:
@@ -489,7 +498,8 @@ mkdir /etc/ld.so.conf.d</kbd>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-glibc" name="contents-glibc"></a>6.9.4. Glibc 的内容
+          <a id="contents-glibc" name="contents-glibc"></a>6.9.4. Contents of
+          Glibc
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -1201,25 +1211,25 @@ mkdir /etc/ld.so.conf.d</kbd>
       <ul>
         <li class="prev">
           <a accesskey="p" href="man-pages.html" title=
-          "Man-pages-3.38">上一页</a>
+          "Man-pages-3.41">上一页</a>
           <p>
-            Man-pages-3.38
+            Man-pages-3.41
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="readjusting.html" title=
-          "Re-adjusting the Toolchain">下一页</a>
+          <a accesskey="n" href="adjusting.html" title=
+          "Adjusting the Toolchain">下一页</a>
           <p>
-            Re-adjusting the Toolchain
+            Adjusting the Toolchain
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>

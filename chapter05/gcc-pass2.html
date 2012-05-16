@@ -4,17 +4,17 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      5.10.&nbsp;GCC-4.7.0 - 第二遍
+      5.9.&nbsp;GCC-4.7.0 - 第二遍
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
         第&nbsp;5&nbsp;章&nbsp;搭建临时系统
@@ -39,18 +39,19 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-tools-gcc-pass2" name="ch-tools-gcc-pass2"></a>5.10.
+        <a id="ch-tools-gcc-pass2" name="ch-tools-gcc-pass2"></a>5.9.
         GCC-4.7.0 - 第二遍
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          GCC 程序包包含 GNU 编译器集，其中包括 C 和 C++ 编译器。
+          The GCC package contains the GNU compiler collection, which
+          includes the C and C++ compilers.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -67,28 +68,20 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          5.10.1. 安装 GCC
+          5.9.1. 安装 GCC
         </h2>
         <p>
-          晚于 4.3 版本的 GCC 会将此次编制作为重新定位编译器来对待，不会允许在 <em class=
-          "parameter"><code>--prefix</code></em> 指定的位置搜索起始文件。由于这不是重新定位编译器，而
-          <code class="filename">/tools</code> 中的起始文件对于编制一个链接至 <code class=
-          "filename">/tools</code> 中的库的编译器至关重要，所以应用以下补丁暂时将 GCC 还原到旧的行为：
+          我们第一次编制的 GCC 安装了几个内置系统头文件。通常其中一个，<code class=
+          "filename">limits.h</code> 会反过来包含对应的系统 <code class=
+          "filename">limits.h</code> 头文件，也就是 <code class=
+          "filename">/tools/include/limits.h</code>。然而在第一次编制 GCC 时
+          <code class="filename">/tools/include/limits.h</code> 不存在，所以 GCC
+          安装的内置头文件是一个部分的、自包含的文件，不包含系统头文件的扩展特性。这对于临时的 libc 已经足够了，但是这次编制的 GCC
+          需要完整的内置头文件。创建一个完整版本的内置头文件使用的命令与 GCC 编制系统通常情况下的行为相同：
         </p>
         <pre class="userinput">
-<kbd class="command">patch -Np1 -i ../gcc-4.7.0-startfiles_fix-1.patch</kbd>
-</pre>
-        <p>
-          通常情况下 GCC <span class="command"><strong>fixincludes</strong></span>
-          脚本会被运行，来修复潜在损坏的头文件。由于现在 GCC-4.7.0 和 Glibc-2.15
-          已经安装好了，它们的头文件都已知不需要修复，就不需要运行 <span class=
-          "command"><strong>fixincludes</strong></span>
-          脚本。事实上，运行这个脚本可能会从宿主系统向 GCC 的私有包含目录安装修复的头文件而污染编制环境。可以执行以下命令来支持运行
-          <span class="command"><strong>fixincludes</strong></span> 脚本：
-        </p>
-        <pre class="userinput">
-<kbd class="command">cp -v gcc/Makefile.in{,.orig}
-sed 's@\./fixinc\.sh@-c true@' gcc/Makefile.in.orig &gt; gcc/Makefile.in</kbd>
+<kbd class="command">cat gcc/limitx.h gcc/glimits.h gcc/limity.h &gt; \
+  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/include-fixed/limits.h</kbd>
 </pre>
         <p>
           对于 x86 计算机，引导编制 GCC 使用 <code class=
@@ -102,10 +95,7 @@ sed 's/^T_CFLAGS =$/&amp; -fomit-frame-pointer/' gcc/Makefile.in.tmp \
   &gt; gcc/Makefile.in</kbd>
 </pre>
         <p>
-          以下命令将改变 GCC 的默认动态链接器位置以使用安装于 <code class="filename">/tools</code>
-          的那一个。它也会从 GCC 的包含搜索路径中移除 <code class=
-          "filename">/usr/include</code>。现在就这样做而不是安装后调节 specs 文件是为了确保实际编制 GCC
-          的过程中使用新的动态链接器。执行：
+          再次改变 GCC 的默认动态链接器位置以使用安装于 <code class="filename">/tools</code> 的副本。
         </p>
         <pre class="userinput">
 <kbd class="command">for file in \
@@ -117,37 +107,10 @@ do
   echo '
 #undef STANDARD_STARTFILE_PREFIX_1
 #undef STANDARD_STARTFILE_PREFIX_2
-#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib"
+#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib/"
 #define STANDARD_STARTFILE_PREFIX_2 ""' &gt;&gt; $file
   touch $file.orig
 done</kbd>
-</pre>
-        <p>
-          由于上文似乎很难跟进，我们把它拆解开来。首先我们找到 <code class="filename">gcc/config</code>
-          目录中所有名为 <code class="filename">linux.h</code>、<code class=
-          "filename">linux64.h</code> 或者 <code class=
-          "filename">sysv4.h</code> 的文件。对于找到的每个文件，我们把它复制为一个有同样名字但是加上
-          “<span class="quote">.orig</span>” 后缀。然后第一个 sed 表达式将出现的所有
-          “<span class="quote">/lib/ld</span>”、“<span class=
-          "quote">/lib64/ld</span>” 或 “<span class="quote">/lib32/ld</span>”
-          替换为 “<span class="quote">/tools</span>”，第二个替换硬编码的 “<span class=
-          "quote">/usr</span>”。然后我们在文件末尾添加我们的声明，调节包含搜索路径和起始文件前缀。最后我们用
-          <span class="command"><strong>touch</strong></span> 来更新复制的文件的时间戳。在与
-          <span class="command"><strong>cp -u</strong></span>
-          联用时这可以防止由于误操作将命令运行两次而改变原有文件。
-        </p>
-        <p>
-          在 x86_64 上，给 GCC 解除多重库 specs 可以确保它不会试图链接至宿主上的库：
-        </p>
-        <pre class="userinput">
-<kbd class="command">case $(uname -m) in
-  x86_64)
-    for file in $(find gcc/config -name t-linux64) ; do \
-      cp -v $file{,.orig}
-      sed '/MULTILIB_OSDIRNAMES/d' $file.orig &gt; $file
-    done
-  ;;
-esac</kbd>
 </pre>
         <p>
           与第一次编译 GCC 相同，它需要 GMP、MPFR 和 MPC 程序包。解开压缩包冰将它们移动到指定名称的目录中：
@@ -155,8 +118,8 @@ esac</kbd>
         <pre class="userinput">
 <kbd class="command">tar -jxf ../mpfr-3.1.0.tar.bz2
 mv -v mpfr-3.1.0 mpfr
-tar -Jxf ../gmp-5.0.4.tar.xz
-mv -v gmp-5.0.4 gmp
+tar -Jxf ../gmp-5.0.5.tar.xz
+mv -v gmp-5.0.5 gmp
 tar -zxf ../mpc-0.9.tar.gz
 mv -v mpc-0.9 mpc</kbd>
 </pre>
@@ -174,12 +137,13 @@ cd ../gcc-build</kbd>
           现在准备编译 GCC：
         </p>
         <pre class="userinput">
-<kbd class="command">CC="$LFS_TGT-gcc -B/tools/lib/" \
+<kbd class="command">CC=$LFS_TGT-gcc \
 AR=$LFS_TGT-ar                  \
 RANLIB=$LFS_TGT-ranlib          \
 ../gcc-4.7.0/configure          \
     --prefix=/tools             \
     --with-local-prefix=/tools  \
+    --with-native-system-header-dir=/tools/include \
     --enable-clocale=gnu        \
     --enable-shared             \
     --enable-threads=posix      \
@@ -189,8 +153,6 @@ RANLIB=$LFS_TGT-ranlib          \
     --disable-multilib          \
     --disable-bootstrap         \
     --disable-libgomp           \
-    --without-ppl               \
-    --without-cloog             \
     --with-mpfr-include=$(pwd)/../gcc-4.7.0/mpfr/src \
     --with-mpfr-lib=$(pwd)/mpfr/src/.libs</kbd>
 </pre>
@@ -335,7 +297,8 @@ readelf -l a.out | grep ': /tools'</kbd>
         <p>
           有关此程序包的细节位于<a class="xref" href=
           "../chapter06/gcc.html#contents-gcc" title=
-          "6.17.2.&nbsp;GCC 的内容">第&nbsp;6.17.2&nbsp;节 “GCC 的内容”</a>。
+          "6.17.2.&nbsp;Contents of GCC">第&nbsp;6.17.2&nbsp;节 “Contents of
+          GCC”</a>。
         </p>
       </div>
     </div>
@@ -360,7 +323,7 @@ readelf -l a.out | grep ': /tools'</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>

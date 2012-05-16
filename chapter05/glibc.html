@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
         第&nbsp;5&nbsp;章&nbsp;搭建临时系统
@@ -22,15 +22,16 @@
       <ul>
         <li class="prev">
           <a accesskey="p" href="linux-headers.html" title=
-          "Linux-3.3.2 API 头文件">上一页</a>
+          "Linux-3.3.5 API 头文件">上一页</a>
           <p>
-            Linux-3.3.2 API 头文件
+            Linux-3.3.5 API 头文件
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="adjusting.html" title="调节工具链">下一页</a>
+          <a accesskey="n" href="binutils-pass2.html" title=
+          "Binutils-2.22 - 第二遍">下一页</a>
           <p>
-            调节工具链
+            Binutils-2.22 - 第二遍
           </p>
         </li>
         <li class="up">
@@ -39,7 +40,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
@@ -49,7 +50,10 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Glibc 程序包包含主要的 C 库。此库提供用于分配内存、搜索目录、开关读写文件、字符串处理、表达式匹配、算术等的基本途径。
+          The Glibc package contains the main C library. This library
+          provides the basic routines for allocating memory, searching
+          directories, opening and closing files, reading and writing files,
+          string handling, pattern matching, arithmetic, and so on.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -258,12 +262,59 @@ esac</kbd>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
 </pre>
+        <div class="admon caution">
+          <img alt="[小心]" src="../images/caution.png" />
+          <h3>
+            小心
+          </h3>
+          <p>
+            在这里，停下来确保新工具链的基本功能 (编译和链接) 能正常工作很重要。要进行完整性检查，运行以下命令：
+          </p>
+          <pre class="userinput">
+<kbd class="command">echo 'main(){}' &gt; dummy.c
+$LFS_TGT-gcc dummy.c
+readelf -l a.out | grep ': /tools'</kbd>
+</pre>
+          <p>
+            如果一切工作正常，就不会出现错误，最后一条命令的输出会符合以下格式：
+          </p>
+          <pre class="screen">
+<code class=
+"computeroutput">[Requesting program interpreter: /tools/lib/ld-linux.so.2]</code>
+</pre>
+          <p>
+            留意 <code class="filename">/tools/lib</code> 或者 64 位计算机上的
+            <code class="filename">/tools/lib64</code> 作为动态链接器的前缀出现。
+          </p>
+          <p>
+            如果输出不如上文所示或者根本没有输出，那就有什么地方出错了。研究回溯刚才的步骤，查出问题并修正它。在继续之前必须解决这一问题。可能在刚才的
+            specs 文件修改过程中出现了问题。如果出现了这种情况，重做 specs
+            文件修改，小心地复制粘贴命令。(译注：在这一版本中并没有进行 specs 文件修改，此处的解释有误，但原文如此。)
+          </p>
+          <p>
+            一切正常之后，清理测试文件：
+          </p>
+          <pre class="userinput">
+<kbd class="command">rm -v dummy.c a.out</kbd>
+</pre>
+        </div>
+        <div class="admon note">
+          <img alt="[注意]" src="../images/note.png" />
+          <h3>
+            注意
+          </h3>
+          <p>
+            下一节中编制 Binutils 相当与额外检查了一次工具链是否正常编制。如果 Binutils 编制失败，就说明之前的
+            Binutils、GCC 或 Glibc 安装出现了问题。
+          </p>
+        </div>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <p>
           有关此程序包的细节位于<a class="xref" href=
           "../chapter06/glibc.html#contents-glibc" title=
-          "6.9.4.&nbsp;Glibc 的内容">第&nbsp;6.9.4&nbsp;节 “Glibc 的内容”</a>。
+          "6.9.4.&nbsp;Contents of Glibc">第&nbsp;6.9.4&nbsp;节 “Contents of
+          Glibc”</a>。
         </p>
       </div>
     </div>
@@ -271,15 +322,16 @@ esac</kbd>
       <ul>
         <li class="prev">
           <a accesskey="p" href="linux-headers.html" title=
-          "Linux-3.3.2 API 头文件">上一页</a>
+          "Linux-3.3.5 API 头文件">上一页</a>
           <p>
-            Linux-3.3.2 API 头文件
+            Linux-3.3.5 API 头文件
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="adjusting.html" title="调节工具链">下一页</a>
+          <a accesskey="n" href="binutils-pass2.html" title=
+          "Binutils-2.22 - 第二遍">下一页</a>
           <p>
-            调节工具链
+            Binutils-2.22 - 第二遍
           </p>
         </li>
         <li class="up">
@@ -288,7 +340,7 @@ esac</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>

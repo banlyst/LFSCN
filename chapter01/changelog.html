@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
         第&nbsp;1&nbsp;章&nbsp;介绍
@@ -38,7 +38,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
@@ -48,7 +48,7 @@
         变更日志
       </h1>
       <p>
-        这是 Linux From Scratch 版本 SVN-20120415，日期 Apr 15,
+        这是 Linux From Scratch 版本 SVN-20120513，日期 May 13,
         2012。如果本书已经超过六个月了，或许会有更新的版本发布。请查看镜像站点 <a class="ulink" href=
         "http://www.linuxfromscratch.org/mirrors.html">http://www.linuxfromscratch.org/mirrors.html</a>
         。
@@ -61,6 +61,274 @@
           <b>变更日志条目：</b>
         </p>
         <ul>
+          <li>
+            <p>
+              2012-05-13
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Coreutils-8.17。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3083">#3083</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-05-11
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Man-Pages-3.41。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3084">#3084</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Linux-3.3.5。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3080">#3080</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - 升级至 GMP-5.0.5。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3079">#3079</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - 移除第二遍 GCC 和第六章的 sed，它阻止 fixincludes
+                    脚本运行；它已经不再默认运行。由 Jeremy Huntwork 报告。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-05-10
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [bdubbs] - 在第九章中添加 /etc/lsb-release 文件。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-05-09
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [bdubbs] - 升级 BLFS 中的 LSB 程序包。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-05-06
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Zlib-1.2.7。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3078">#3078</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - 给 Bash 应用最新的上游修复。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3077">#3077</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - Add back a patch for Glibc that prevents
+                    various BLFS programs, such as aplay, from segfaulting.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-05-05
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [bdubbs] - 书中和启动脚本中的文本改动。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-05-01
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [ken] - 升级至 Kbd-1.15.3。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/2990">#2990</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-04-29
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Linux-3.3.4。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3074">#3074</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Man-Pages-3.40。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3072">#3072</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Autoconf-2.69。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3071">#3071</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Automake-1.12。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3070">#3070</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Grep-2.12。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3068">#3068</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-04-26
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [ken] - 收拾合并产生的一些小问题。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-04-25
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [bdubbs] - 合并在 jh 分支中开发和测试的变动。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [jhuntwork] - 更新第五章的工具链技术注记与编制方法的变动匹配。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [jhuntwork] - 在第五章的 gcc 中使用
+                    --with-native-system-header-dir 开关。替代了之间用来改变
+                    CROSS_SYSTEM_HEADER_DIR 和 NATIVE_SYSTEM_HEADER_DIR
+                    的值以保持工具链只搜索 /tools/include 中的头文件，不搜索 /usr/include 的
+                    sed。感谢 Pierre Labastie。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3066">#3066</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [jhuntwork] - 在第五章的 gcc 中移除 --without-cloog 和
+                    --without-ppl。这些是不必要的，因为第一遍的 gcc 无妨链接至宿主的库，而且第二遍编制的 gcc
+                    不可能会找到宿主的头文件或者库。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [jhuntwork] - 调节编制方法，使用 sysroot。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-04-24
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Linux-3.3.3。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3067">#3067</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Man-Pages-3.39。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3065">#3065</a>。
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    [matthew] - 升级至 Kmod-8。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3064">#3064</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p>
+              2012-04-19
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li>
+                  <p>
+                    [bdubbs] - 改变两个组 ID 以支持一个旧式程序。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3061">#3061</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
           <li>
             <p>
               2012-04-15
@@ -82,7 +350,7 @@
                 <li>
                   <p>
                     [matthew] - 在 Bash 指令中使用第六章 Coreutils 的 su
-                    而不是第五章的那一个。在第五章中安装 su 为 su 而不是 su-tools。修复 <a class=
+                    而不是第五章的副本。在第五章中安装 su 为 su 而不是 su-tools。修复 <a class=
                     "ulink" href=
                     "http://wiki.linuxfromscratch.org/lfs/ticket/3057">#3057</a>。
                   </p>
@@ -439,7 +707,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>

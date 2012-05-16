@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
         第&nbsp;9&nbsp;章&nbsp;结束
@@ -38,7 +38,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
@@ -47,15 +47,29 @@
         <a id="ch-finish-theend" name="ch-finish-theend"></a>9.1. 结束
       </h1>
       <p>
-        干得好！LFS 系统已经安装完毕！我们祝愿你亲自定制的系统取得成功。
+        干得好！新的 LFS 系统已经安装完毕！我们祝愿您亲自定制的系统取得成功。
       </p>
       <p>
         创建 <code class="filename">/etc/lfs-release</code>
-        是一个好主意。如果有这个文件，你可以方便的知道你所安装的 LFS 系统的版本 (当你有问题向我们求助时)。创建这个文件：
+        是一个好主意。有了这个文件，你就可以方便的知道你所安装的 LFS 系统的版本 (当你有问题向我们求助时)。如此创建这个文件：
       </p>
       <pre class="userinput">
-<kbd class="command">echo SVN-20120415 &gt; /etc/lfs-release</kbd>
+<kbd class="command">echo SVN-20120513 &gt; /etc/lfs-release</kbd>
 </pre>
+      <p>
+        创建一个文件显示你的系统符合 Linux 基础标准 (LSB) 也是一个好主意。要创建此文件，运行：
+      </p>
+      <pre class="userinput">
+<kbd class="command">cat &gt; /etc/lsb-release &lt;&lt; "EOF"
+DISTRIB_ID="Linux From Scratch"
+DISTRIB_RELEASE="SVN-20120513"
+DISTRIB_CODENAME="&lt;你的名字&gt;"
+DISTRIB_DESCRIPTION="Linux From Scratch"
+EOF</kbd>
+</pre>
+      <p>
+        为了把你的系统标识为独特的，一定记得在 'DISTRIB_CODENAME' 域中填入一个自己定义的字串。
+      </p>
     </div>
     <div class="navfooter">
       <ul>
@@ -77,7 +91,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>

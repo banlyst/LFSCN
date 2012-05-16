@@ -4,20 +4,20 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.48.&nbsp;Kbd-1.15.2
+      6.48.&nbsp;Kbd-1.15.3
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
-        第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
+        第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
@@ -28,38 +28,39 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="kmod.html" title="Kmod-7">下一页</a>
+          <a accesskey="n" href="kmod.html" title="Kmod-8">下一页</a>
           <p>
-            Kmod-7
+            Kmod-8
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-kbd" name="ch-system-kbd"></a>6.48. Kbd-1.15.2
+        <a id="ch-system-kbd" name="ch-system-kbd"></a>6.48. Kbd-1.15.3
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The Kbd package contains key-table files and keyboard utilities.
+          The Kbd package contains key-table files, console fonts, and
+          keyboard utilities.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">预计编制时间:</strong> <span class=
-              "segbody">少于 0.1 SBU</span>
+              "segbody">0.2 SBU</span>
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">16.0 MB</span>
+              "segbody">21.0 MB</span>
             </div>
           </div>
         </div>
@@ -69,17 +70,34 @@
           6.48.1. Installation of Kbd
         </h2>
         <p>
+          The behaviour of <span class=
+          "command"><strong>loadkeys</strong></span> when run without a
+          filename was broken in this release. The following patch fixes
+          this:
+        </p>
+        <pre class="userinput">
+<kbd class="command">patch -Np1 -i ../kbd-1.15.3-upstream_fixes-1.patch</kbd>
+</pre>
+        <p>
           The behaviour of the Backspace and Delete keys is not consistent
           across the keymaps in the Kbd package. The following patch fixes
           this issue for i386 keymaps:
         </p>
         <pre class="userinput">
-<kbd class="command">patch -Np1 -i ../kbd-1.15.2-backspace-1.patch</kbd>
+<kbd class="command">patch -Np1 -i ../kbd-1.15.3-backspace-1.patch</kbd>
 </pre>
         <p>
           After patching, the Backspace key generates the character with code
           127, and the Delete key generates a well-known escape sequence.
         </p>
+        <p>
+          Fix a bug in the Spanish message translations which prevents kbd
+          from building with gettext-0.18.1.1:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i '/guardado\ el/s/\(^.*en\ %\)\(.*\)/\14\$\2/' po/es.po</kbd>
+</pre>
         <p>
           Prepare Kbd for compilation:
         </p>
@@ -150,9 +168,9 @@
           If desired, install the documentation:
         </p>
         <pre class="userinput">
-<kbd class="command">mkdir -v /usr/share/doc/kbd-1.15.2
+<kbd class="command">mkdir -v /usr/share/doc/kbd-1.15.3
 cp -R -v doc/* \
-         /usr/share/doc/kbd-1.15.2</kbd>
+         /usr/share/doc/kbd-1.15.3</kbd>
 </pre>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
@@ -548,18 +566,18 @@ cp -R -v doc/* \
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="kmod.html" title="Kmod-7">下一页</a>
+          <a accesskey="n" href="kmod.html" title="Kmod-8">下一页</a>
           <p>
-            Kmod-7
+            Kmod-8
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>

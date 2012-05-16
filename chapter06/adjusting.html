@@ -2,23 +2,22 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content=
-    "application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.10.&nbsp;Re-adjusting the Toolchain
+      6.10.&nbsp;Adjusting the Toolchain
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
-        第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
+        第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
@@ -28,41 +27,30 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="zlib.html" title="Zlib-1.2.6">下一页</a>
+          <a accesskey="n" href="zlib.html" title="Zlib-1.2.7">下一页</a>
           <p>
-            Zlib-1.2.6
+            Zlib-1.2.7
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-readjusting" name="ch-system-readjusting"></a>6.10.
-        Re-adjusting the Toolchain
+        <a id="ch-system-adjusting" name="ch-system-adjusting"></a>6.10.
+        Adjusting the Toolchain
       </h1>
       <p>
         Now that the final C libraries have been installed, it is time to
-        adjust the toolchain again. The toolchain will be adjusted so that it
-        will link any newly compiled program against these new libraries.
-        This is a similar process used in the “<span class=
-        "quote">Adjusting</span>” phase in the beginning of <a class="xref"
-        href="../chapter05/chapter05.html" title=
-        "第&nbsp;5&nbsp;章&nbsp;搭建临时系统">第五章</a>, but with the adjustments
-        reversed. In <a class="xref" href="../chapter05/chapter05.html"
-        title="第&nbsp;5&nbsp;章&nbsp;搭建临时系统">第五章</a>, the chain was guided
-        from the host's <code class="filename">/{,usr/}lib</code> directories
-        to the new <code class="filename">/tools/lib</code> directory. Now,
-        the chain will be guided from that same <code class=
-        "filename">/tools/lib</code> directory to the LFS <code class=
-        "filename">/{,usr/}lib</code> directories.
+        adjust the toolchain so that it will link any newly compiled program
+        against these new libraries.
       </p>
       <p>
         First, backup the <code class="filename">/tools</code> linker, and
@@ -215,18 +203,18 @@ SEARCH_DIR("/lib");</code>
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="zlib.html" title="Zlib-1.2.6">下一页</a>
+          <a accesskey="n" href="zlib.html" title="Zlib-1.2.7">下一页</a>
           <p>
-            Zlib-1.2.6
+            Zlib-1.2.7
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>

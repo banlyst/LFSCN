@@ -4,26 +4,26 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.37.&nbsp;Automake-1.11.5
+      6.37.&nbsp;Automake-1.12
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
-        第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
+        第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="autoconf.html" title="Autoconf-2.68">上一页</a>
+          <a accesskey="p" href="autoconf.html" title="Autoconf-2.69">上一页</a>
           <p>
-            Autoconf-2.68
+            Autoconf-2.69
           </p>
         </li>
         <li class="next">
@@ -35,18 +35,18 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
         <a id="ch-system-automake" name="ch-system-automake"></a>6.37.
-        Automake-1.11.5
+        Automake-1.12
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
@@ -75,13 +75,20 @@
         </p>
         <pre class="userinput">
 <kbd class=
-"command">./configure --prefix=/usr --docdir=/usr/share/doc/automake-1.11.5</kbd>
+"command">./configure --prefix=/usr --docdir=/usr/share/doc/automake-1.12</kbd>
 </pre>
         <p>
           Compile the package:
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
+</pre>
+        <p>
+          Fix a couple of minor bugs in the test suite:
+        </p>
+        <pre class="userinput">
+<kbd class="command">sed -i -e "s/yacc/lex/" t/lex-clean.sh
+sed -i -e "s/cc/'non-root cc'/" t/dist-readonly.sh</kbd>
 </pre>
         <p>
           To test the results, issue:
@@ -108,15 +115,15 @@
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">acinstall, aclocal, aclocal-1.11,
-              automake, automake-1.11, compile, config.guess, config.sub,
+              <span class="segbody">acinstall, aclocal, aclocal-1.12,
+              automake, automake-1.12, compile, config.guess, config.sub,
               depcomp, elisp-comp, install-sh, mdate-sh, missing,
               mkinstalldirs, py-compile, symlink-tree, and ylwrap</span>
             </div>
             <div class="seg">
               <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/usr/share/aclocal-1.11,
-              /usr/share/automake-1.11, /usr/share/doc/automake-1.11.5</span>
+              <span class="segbody">/usr/share/aclocal-1.12,
+              /usr/share/automake-1.12, /usr/share/doc/automake-1.12</span>
             </div>
           </div>
         </div>
@@ -162,7 +169,7 @@
                   <p>
                     <a id="aclocalversion" name=
                     "aclocalversion"></a><span class="term"><span class=
-                    "command"><strong>aclocal-1.11</strong></span></span>
+                    "command"><strong>aclocal-1.12</strong></span></span>
                   </p>
                 </td>
                 <td>
@@ -200,7 +207,7 @@
                   <p>
                     <a id="automake-version" name=
                     "automake-version"></a><span class="term"><span class=
-                    "command"><strong>automake-1.11</strong></span></span>
+                    "command"><strong>automake-1.12</strong></span></span>
                   </p>
                 </td>
                 <td>
@@ -393,9 +400,9 @@
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="autoconf.html" title="Autoconf-2.68">上一页</a>
+          <a accesskey="p" href="autoconf.html" title="Autoconf-2.69">上一页</a>
           <p>
-            Autoconf-2.68
+            Autoconf-2.69
           </p>
         </li>
         <li class="next">
@@ -407,11 +414,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>

@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
         第&nbsp;5&nbsp;章&nbsp;搭建临时系统
@@ -40,7 +40,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
@@ -121,16 +121,48 @@ cd ../binutils-build</kbd>
           现在准备编译 Binutils：
         </p>
         <pre class="userinput">
-<kbd class="command">../binutils-2.22/configure --target=$LFS_TGT \
-                           --prefix=/tools   \
-                           --disable-nls     \
-                           --disable-werror</kbd>
+<kbd class="command">
+../binutils-2.22/configure     \
+    --prefix=/tools            \
+    --with-sysroot=$LFS        \
+    --with-lib-path=/tools/lib \
+    --target=$LFS_TGT          \
+    --disable-nls              \
+    --disable-werror</kbd>
 </pre>
         <div class="variablelist">
           <p class="title">
             <b>配置选项的含义：</b>
           </p>
           <dl>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--prefix=/tools</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                此项告诉配置脚本准备安装 Binutils 程序于 <code class=
+                "filename">/tools</code> 目录中。
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--with-sysroot=$LFS</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                对于交叉编译，此项告诉编制系统到 $LFS 中寻找需要的目标系统库。
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--with-lib-path=/tools/lib</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                此项指定要配置链接器使用的库路径。
+              </p>
+            </dd>
             <dt>
               <span class="term"><code class=
               "envar">--target=$LFS_TGT</code></span>
@@ -142,16 +174,6 @@ cd ../binutils-build</kbd>
                 脚本返回的值略有区别，此开关会告诉 <span class=
                 "command"><strong>configure</strong></span> 脚本调节 Binutil
                 的编制系统编制一个交叉链接器。
-              </p>
-            </dd>
-            <dt>
-              <span class="term"><em class=
-              "parameter"><code>--prefix=/tools</code></em></span>
-            </dt>
-            <dd>
-              <p>
-                此项告诉配置脚本准备安装 Binutils 程序于 <code class=
-                "filename">/tools</code> 目录中。
               </p>
             </dd>
             <dt>
@@ -230,7 +252,7 @@ esac</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>

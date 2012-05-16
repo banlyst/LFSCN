@@ -4,17 +4,17 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      7.7.&nbsp;如何正确使用启动脚本?
+      7.7.&nbsp;启动脚本如何工作？
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120415">
+  <body class="lfs" id="lfs-SVN-20120513">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120415
+        Linux From Scratch - 版本 SVN-20120513
       </h4>
       <h3>
         第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本
@@ -22,9 +22,9 @@
       <ul>
         <li class="prev">
           <a accesskey="p" href="bootscripts.html" title=
-          "LFS-Bootscripts-20120409">上一页</a>
+          "LFS-Bootscripts-20120505">上一页</a>
           <p>
-            LFS-Bootscripts-20120409
+            LFS-Bootscripts-20120505
           </p>
         </li>
         <li class="next">
@@ -39,13 +39,13 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-scripts-usage" name="ch-scripts-usage"></a>7.7. 如何正确使用启动脚本?
+        <a id="ch-scripts-usage" name="ch-scripts-usage"></a>7.7. 启动脚本如何工作？
       </h1>
       <p>
         Linux uses a special booting facility named SysVinit that is based on
@@ -147,7 +147,9 @@ EOF</kbd>
           As a debugging convenience, the functions script also logs all
           output to <code class="filename">/run/var/bootlog</code>. Since the
           <code class="filename">/run</code> directory is a tmpfs, this file
-          is not persistent across boots.
+          is not persistent across boots, however it is appended to the more
+          permanent file <code class="filename">/var/log/boot.log</code> at
+          the end of the boot process.
         </p>
       </div>
       <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
@@ -271,9 +273,9 @@ EOF</kbd>
       <ul>
         <li class="prev">
           <a accesskey="p" href="bootscripts.html" title=
-          "LFS-Bootscripts-20120409">上一页</a>
+          "LFS-Bootscripts-20120505">上一页</a>
           <p>
-            LFS-Bootscripts-20120409
+            LFS-Bootscripts-20120505
           </p>
         </li>
         <li class="next">
@@ -288,7 +290,7 @@ EOF</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120415">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120513">起始页</a>
         </li>
       </ul>
     </div>
