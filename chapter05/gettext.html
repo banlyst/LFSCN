@@ -49,10 +49,8 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The Gettext package contains utilities for internationalization and
-          localization. These allow programs to be compiled with NLS (Native
-          Language Support), enabling them to output messages in the user's
-          native language.
+          Gettext 程序包包含用于国际化和本地化的工具。这些工具允许程序带有 NLS (原生语言支持)
+          编译，从而使它们能够以用户的本土语言输出消息。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -74,6 +72,12 @@
         <p>
           对于我们的临时工具，我们只需要编制安装 Gettext 的一个二进制。
         </p>
+        <p>
+          修复此程序包与 Glibc-2.16.0 不兼容的问题：
+        </p>
+        <pre class="userinput">
+<kbd class="command">sed -i -e '/gets is a/d' gettext-*/*/stdio.in.h</kbd>
+</pre>
         <p>
           准备编译 Gettext：
         </p>
@@ -127,8 +131,7 @@ make -C src msgfmt</kbd>
         <p>
           有关此程序包的细节位于<a class="xref" href=
           "../chapter06/gettext.html#contents-gettext" title=
-          "6.44.2.&nbsp;Contents of Gettext">第&nbsp;6.44.2&nbsp;节 “Contents
-          of Gettext”</a>。
+          "6.44.2.&nbsp;Gettext 的内容">第&nbsp;6.44.2&nbsp;节 “Gettext 的内容”</a>。
         </p>
       </div>
     </div>
