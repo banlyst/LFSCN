@@ -4,33 +4,34 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.20.&nbsp;Ncurses-5.9
+      6.21.&nbsp;Ncurses-5.9
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="bzip2.html" title="Bzip2-1.0.6">上一页</a>
+          <a accesskey="p" href="pkg-config.html" title=
+          "Pkg-config-0.27">上一页</a>
           <p>
-            Bzip2-1.0.6
+            Pkg-config-0.27
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="util-linux.html" title=
-          "Util-linux-2.21.1">下一页</a>
+          "Util-linux-2.21.2">下一页</a>
           <p>
-            Util-linux-2.21.1
+            Util-linux-2.21.2
           </p>
         </li>
         <li class="up">
@@ -39,42 +40,44 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-ncurses" name="ch-system-ncurses"></a>6.20.
+        <a id="ch-system-ncurses" name="ch-system-ncurses"></a>6.21.
         Ncurses-5.9
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Ncurses 程序包包含用于不依赖终端处理字符屏幕的库。
+          The Ncurses package contains libraries for terminal-independent
+          handling of character screens.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">预计编制时间:</strong> <span class=
-              "segbody">0.8 SBU</span>
+              "segbody">0.6 SBU</span>
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">35 MB</span>
+              "segbody">40 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.20.1. Installation of Ncurses
+          6.21.1. Installation of Ncurses
         </h2>
         <p>
           Prepare Ncurses for compilation:
         </p>
         <pre class="userinput">
 <kbd class=
-"command">./configure --prefix=/usr --with-shared --without-debug --enable-widec</kbd>
+"command">./configure --prefix=/usr --mandir=/usr/share/man --with-shared \
+            --without-debug --enable-widec</kbd>
 </pre>
         <div class="variablelist">
           <p class="title">
@@ -189,8 +192,8 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-ncurses" name="contents-ncurses"></a>6.20.2.
-          Ncurses 的内容
+          <a id="contents-ncurses" name="contents-ncurses"></a>6.21.2.
+          Contents of Ncurses
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -460,16 +463,17 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="bzip2.html" title="Bzip2-1.0.6">上一页</a>
+          <a accesskey="p" href="pkg-config.html" title=
+          "Pkg-config-0.27">上一页</a>
           <p>
-            Bzip2-1.0.6
+            Pkg-config-0.27
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="util-linux.html" title=
-          "Util-linux-2.21.1">下一页</a>
+          "Util-linux-2.21.2">下一页</a>
           <p>
-            Util-linux-2.21.1
+            Util-linux-2.21.2
           </p>
         </li>
         <li class="up">
@@ -478,7 +482,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

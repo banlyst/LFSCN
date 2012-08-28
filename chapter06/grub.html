@@ -4,32 +4,32 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.45.&nbsp;GRUB-1.99
+      6.47.&nbsp;GRUB-2.00
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="xz-utils.html" title="Xz-5.0.3">上一页</a>
+          <a accesskey="p" href="xz-utils.html" title="Xz-5.0.4">上一页</a>
           <p>
-            Xz-5.0.3
+            Xz-5.0.4
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="gzip.html" title="Gzip-1.4">下一页</a>
+          <a accesskey="n" href="less.html" title="Less-444">下一页</a>
           <p>
-            Gzip-1.4
+            Less-444
           </p>
         </li>
         <li class="up">
@@ -38,13 +38,13 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-grub" name="ch-system-grub"></a>6.45. GRUB-1.99
+        <a id="ch-system-grub" name="ch-system-grub"></a>6.47. GRUB-2.00
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
@@ -54,19 +54,26 @@
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">预计编制时间:</strong> <span class=
-              "segbody">0.6 SBU</span>
+              "segbody">0.7 SBU</span>
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">76 MB</span>
+              "segbody">112 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.45.1. Installation of GRUB
+          6.47.1. Installation of GRUB
         </h2>
+        <p>
+          Fix an incompatibility between this package and Glibc-2.16.0:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i -e '/gets is a/d' grub-core/gnulib/stdio.in.h</kbd>
+</pre>
         <p>
           Prepare GRUB for compilation:
         </p>
@@ -78,8 +85,10 @@
             --disable-werror</kbd>
 </pre>
         <p>
-          The --disable switches minimize what is built by disabling features
-          and testing programs not really needed for LFS.
+          The --disable-werror option allows the build to complete with
+          warnings introduced by more recent flex versions. The other
+          --disable switches minimize what is built by disabling features and
+          testing programs not needed for LFS.
         </p>
         <p>
           Compile the package:
@@ -105,24 +114,26 @@
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-gRUB" name="contents-gRUB"></a>6.45.2. Contents of
+          <a id="contents-gRUB" name="contents-gRUB"></a>6.47.2. Contents of
           GRUB
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">grub-bin2h, grub-editenv, grub-fstest,
-              grub-install, grub-kbdcomp, grub-menulst2cfg, grub-mkconfig,
-              grub-mkdevicemap, grub-mkimage, grub-mklayout, grub-mknetdir,
+              <span class="segbody">grub-bin2h, grub-bios-setup,
+              grub-editenv, grub-fstest, grub-install, grub-kbdcomp,
+              grub-menulst2cfg, grub-mkconfig, grub-mkdevicemap,
+              grub-mkimage, grub-mklayout, grub-mknetdir,
               grub-mkpasswd-pbkdf2, grub-mkrelpath, grub-mkrescue,
-              grub-probe, grub-reboot, grub-script-check, grub-set-default,
-              grub-setup</span>
+              grub-mkstandalone, grub-ofpathname, grub-probe, grub-reboot,
+              grub-script-check, grub-set-default, grub-setup,
+              grub-sparc64-setup</span>
             </div>
             <div class="seg">
               <strong class="segtitle">Installed directories:</strong>
               <span class="segbody">/usr/lib/grub, /etc/grub.d,
-              /usr/share/grub</span>
+              /usr/share/grub, /boot/grub</span>
             </div>
           </div>
         </div>
@@ -144,6 +155,20 @@
                 <td>
                   <p>
                     Converts a binary file to a C header
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="grub-bios-setup" name=
+                    "grub-bios-setup"></a><span class="term"><span class=
+                    "command"><strong>grub-bios-setup</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Is a helper program for grub-install
                   </p>
                 </td>
               </tr>
@@ -337,6 +362,34 @@
               <tr>
                 <td>
                   <p>
+                    <a id="grub-mkstandalone" name=
+                    "grub-mkstandalone"></a><span class="term"><span class=
+                    "command"><strong>grub-mkstandalone</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Generates a standalone image
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="grub-ofpathname" name=
+                    "grub-ofpathname"></a><span class="term"><span class=
+                    "command"><strong>grub-ofpathname</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Is a helper program that prints the path of a GRUB device
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
                     <a id="grub-probe" name="grub-probe"></a><span class=
                     "term"><span class=
                     "command"><strong>grub-probe</strong></span></span>
@@ -405,6 +458,20 @@
                   </p>
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="grub-sparc64-setup" name=
+                    "grub-sparc64-setup"></a><span class="term"><span class=
+                    "command"><strong>grub-sparc64-setup</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Is a helper program for grub-setup
+                  </p>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -413,15 +480,15 @@
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="xz-utils.html" title="Xz-5.0.3">上一页</a>
+          <a accesskey="p" href="xz-utils.html" title="Xz-5.0.4">上一页</a>
           <p>
-            Xz-5.0.3
+            Xz-5.0.4
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="gzip.html" title="Gzip-1.4">下一页</a>
+          <a accesskey="n" href="less.html" title="Less-444">下一页</a>
           <p>
-            Gzip-1.4
+            Less-444
           </p>
         </li>
         <li class="up">
@@ -430,7 +497,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

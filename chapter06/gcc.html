@@ -4,26 +4,26 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.17.&nbsp;GCC-4.7.0
+      6.17.&nbsp;GCC-4.7.1
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="mpc.html" title="MPC-0.9">上一页</a>
+          <a accesskey="p" href="mpc.html" title="MPC-1.0">上一页</a>
           <p>
-            MPC-0.9
+            MPC-1.0
           </p>
         </li>
         <li class="next">
@@ -38,28 +38,28 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-gcc" name="ch-system-gcc"></a>6.17. GCC-4.7.0
+        <a id="ch-system-gcc" name="ch-system-gcc"></a>6.17. GCC-4.7.1
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          GCC ç¨åºååå« GNU ç¼è¯å¨éï¼å¶ä¸­åæ¬ C å C++
-          ç¼è¯å¨ã
+          The GCC package contains the GNU compiler collection, which
+          includes the C and C++ compilers.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">预计编制时间:</strong> <span class=
-              "segbody">47 SBU</span>
+              "segbody">53.5 SBU</span>
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">1.7 GB</span>
+              "segbody">2.0 GB</span>
             </div>
           </div>
         </div>
@@ -81,7 +81,7 @@
 </pre>
         <p>
           As in <a class="xref" href="../chapter05/gcc-pass2.html" title=
-          "5.9.&nbsp;GCC-4.7.0 - 第二遍">第&nbsp;5.9&nbsp;节 “GCC-4.7.0 -
+          "5.9.&nbsp;GCC-4.7.1 - 第二遍">第&nbsp;5.9&nbsp;节 “GCC-4.7.1 -
           第二遍”</a>, apply the following <span class=
           "command"><strong>sed</strong></span> to force the build to use the
           <code class="option">-fomit-frame-pointer</code> compiler flag in
@@ -91,6 +91,13 @@
 <kbd class="command">case `uname -m` in
   i?86) sed -i 's/^T_CFLAGS =$/&amp; -fomit-frame-pointer/' gcc/Makefile.in ;;
 esac</kbd>
+</pre>
+        <p>
+          Also fix an error in one of the check Makefiles:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i -e /autogen/d -e /check.sh/d fixincludes/Makefile.in</kbd>
 </pre>
         <p>
           The GCC documentation recommends building GCC outside of the source
@@ -104,7 +111,7 @@ cd ../gcc-build</kbd>
           Prepare GCC for compilation:
         </p>
         <pre class="userinput">
-<kbd class="command">../gcc-4.7.0/configure --prefix=/usr            \
+<kbd class="command">../gcc-4.7.1/configure --prefix=/usr            \
                        --libexecdir=/usr/lib    \
                        --enable-shared          \
                        --enable-threads=posix   \
@@ -158,7 +165,7 @@ cd ../gcc-build</kbd>
           stack, so increase the stack size prior to running the tests:
         </p>
         <pre class="userinput">
-<kbd class="command">ulimit -s 16384</kbd>
+<kbd class="command">ulimit -s 32768</kbd>
 </pre>
         <p>
           Test the results, but do not stop at errors:
@@ -170,7 +177,7 @@ cd ../gcc-build</kbd>
           To receive a summary of the test suite results, run:
         </p>
         <pre class="userinput">
-<kbd class="command">../gcc-4.7.0/contrib/test_summary</kbd>
+<kbd class="command">../gcc-4.7.1/contrib/test_summary</kbd>
 </pre>
         <p>
           For only the summaries, pipe the output through <strong class=
@@ -246,9 +253,9 @@ readelf -l a.out | grep ': /lib'</kbd>
         </p>
         <pre class="screen">
 <code class=
-"computeroutput">/usr/lib/gcc/i686-pc-linux-gnu/4.7.0/../../../crt1.o succeeded
-/usr/lib/gcc/i686-pc-linux-gnu/4.7.0/../../../crti.o succeeded
-/usr/lib/gcc/i686-pc-linux-gnu/4.7.0/../../../crtn.o succeeded</code>
+"computeroutput">/usr/lib/gcc/i686-pc-linux-gnu/4.7.1/../../../crt1.o succeeded
+/usr/lib/gcc/i686-pc-linux-gnu/4.7.1/../../../crti.o succeeded
+/usr/lib/gcc/i686-pc-linux-gnu/4.7.1/../../../crtn.o succeeded</code>
 </pre>
         <p>
           Depending on your machine architecture, the above may differ
@@ -273,8 +280,8 @@ readelf -l a.out | grep ': /lib'</kbd>
         <pre class="screen">
 <code class="computeroutput">#include &lt;...&gt; search starts here:
  /usr/local/include
- /usr/lib/gcc/i686-pc-linux-gnu/4.7.0/include
- /usr/lib/gcc/i686-pc-linux-gnu/4.7.0/include-fixed
+ /usr/lib/gcc/i686-pc-linux-gnu/4.7.1/include
+ /usr/lib/gcc/i686-pc-linux-gnu/4.7.1/include-fixed
  /usr/include</code>
 </pre>
         <p>
@@ -379,7 +386,8 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-gcc" name="contents-gcc"></a>6.17.2. GCC çåå®¹
+          <a id="contents-gcc" name="contents-gcc"></a>6.17.2. Contents of
+          GCC
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -398,7 +406,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
             <div class="seg">
               <strong class="segtitle">Installed directories:</strong>
               <span class="segbody">/usr/include/c++, /usr/lib/gcc,
-              /usr/share/gcc-4.7.0</span>
+              /usr/share/gcc-4.7.1</span>
             </div>
           </div>
         </div>
@@ -639,9 +647,9 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="mpc.html" title="MPC-0.9">上一页</a>
+          <a accesskey="p" href="mpc.html" title="MPC-1.0">上一页</a>
           <p>
-            MPC-0.9
+            MPC-1.0
           </p>
         </li>
         <li class="next">
@@ -656,7 +664,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

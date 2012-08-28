@@ -4,20 +4,20 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      7.12.&nbsp;rc.site文件
+      7.12.&nbsp;The rc.site File
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
-        第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本
+        第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts
       </h3>
       <ul>
         <li class="prev">
@@ -28,37 +28,44 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="profile.html" title="Bash初始化文件">下一页</a>
+          <a accesskey="n" href="profile.html" title=
+          "The Bash Shell Startup Files">下一页</a>
           <p>
-            Bash初始化文件
+            The Bash Shell Startup Files
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-scripts-site" name="ch-scripts-site"></a>7.12. rc.site文件
+        <a id="ch-scripts-site" name="ch-scripts-site"></a>7.12. The rc.site
+        File
       </h1>
       <p>
-        可选的 <code class="filename">/etc/sysconfig/rc.site</code>
-        文件包含一些可以自动设置给每一个启动脚本的设置。这是另一种设置 <code class=
-        "filename">/etc/sysconfig/</code> 文件夹中的 <code class=
-        "filename">hostname</code>，<code class="filename">console</code>，和
-        <code class="filename">clock</code> 文件中指定变量的方法。如果这些相关的变量在这些分开的文件和
-        <code class="filename">rc.site</code> 文件中都有设置，在 <code class=
-        "filename">rc.site</code>中的设置会覆盖其他文件的设置。
+        The optional <code class="filename">/etc/sysconfig/rc.site</code>
+        file contains settings that are automatically set for each boot
+        script. It can alternatively set the values specified in the
+        <code class="filename">hostname</code>, <code class=
+        "filename">console</code>, and <code class="filename">clock</code>
+        files in the <code class="filename">/etc/sysconfig/</code> directory.
+        If the associated variables are present in both these separate files
+        and <code class="filename">rc.site</code>, the values in the script
+        specific files have precedence.
       </p>
       <p>
-        <code class="filename">rc.site</code> 也包含一些可以定制启动流程的其他方面的参数。设置
-        IPROMPT 变量可以启用交互式启动。其他选项会在这个文件的注释中说明。这个文件的默认版本如下：
+        <code class="filename">rc.site</code> also contains parameters that
+        can customize other aspects of the boot process. Setting the IPROMPT
+        variable will enable selective running of bootscripts. Other options
+        are described in the file comments. The default version of the file
+        is as follows:
       </p>
       <pre class="auto">
 # rc.site
@@ -151,18 +158,19 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="profile.html" title="Bash初始化文件">下一页</a>
+          <a accesskey="n" href="profile.html" title=
+          "The Bash Shell Startup Files">下一页</a>
           <p>
-            Bash初始化文件
+            The Bash Shell Startup Files
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

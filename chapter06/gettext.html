@@ -4,26 +4,26 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.42.&nbsp;Gettext-0.18.1.1
+      6.44.&nbsp;Gettext-0.18.1.1
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="flex.html" title="Flex-2.5.35">上一页</a>
+          <a accesskey="p" href="flex.html" title="Flex-2.5.37">上一页</a>
           <p>
-            Flex-2.5.35
+            Flex-2.5.37
           </p>
         </li>
         <li class="next">
@@ -38,37 +38,45 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-gettext" name="ch-system-gettext"></a>6.42.
+        <a id="ch-system-gettext" name="ch-system-gettext"></a>6.44.
         Gettext-0.18.1.1
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Gettext 程序包包含用于国际化和本地化的工具。这些工具允许程序带有 NLS (本土语言支持)
-          编译，使它们能够以用户的本土语言输出消息。
+          The Gettext package contains utilities for internationalization and
+          localization. These allow programs to be compiled with NLS (Native
+          Language Support), enabling them to output messages in the user's
+          native language.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">预计编制时间:</strong> <span class=
-              "segbody">5.8 SBU</span>
+              "segbody">2.3 SBU</span>
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">125 MB</span>
+              "segbody">180 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.42.1. Installation of Gettext
+          6.44.1. Installation of Gettext
         </h2>
+        <p>
+          Fix an incompatibility between this package and Glibc-2.16.0:
+        </p>
+        <pre class="userinput">
+<kbd class="command">sed -i -e '/gets is a/d' gettext-*/*/stdio.in.h</kbd>
+</pre>
         <p>
           Prepare Gettext for compilation:
         </p>
@@ -97,8 +105,8 @@
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-gettext" name="contents-gettext"></a>6.42.2.
-          Gettext 的内容
+          <a id="contents-gettext" name="contents-gettext"></a>6.44.2.
+          Contents of Gettext
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -599,9 +607,9 @@
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="flex.html" title="Flex-2.5.35">上一页</a>
+          <a accesskey="p" href="flex.html" title="Flex-2.5.37">上一页</a>
           <p>
-            Flex-2.5.35
+            Flex-2.5.37
           </p>
         </li>
         <li class="next">
@@ -616,7 +624,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

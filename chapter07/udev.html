@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
-        第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本
+        第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts
       </h3>
       <ul>
         <li class="prev">
@@ -36,11 +36,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
@@ -192,7 +192,7 @@
             7.4.2.3. Device Node Creation
           </h3>
           <p>
-            As of Udev-182, <span class=
+            In recent version of udev, <span class=
             "command"><strong>udevd</strong></span> no longer creates device
             files in <code class="filename">/dev</code>. Instead, this must
             be handled in the kernel, by the <code class=
@@ -296,7 +296,7 @@
             Udev will only load a module if it has a bus-specific alias and
             the bus driver properly exports the necessary aliases to
             <code class="systemitem">sysfs</code>. In other cases, one should
-            arrange module loading by other means. With Linux-3.3.6, Udev is
+            arrange module loading by other means. With Linux-3.5.2, Udev is
             known to load properly-written drivers for INPUT, IDE, PCI, USB,
             SCSI, SERIO, and FireWire devices.
           </p>
@@ -319,7 +319,7 @@
             If there is no <code class="filename">modalias</code> file in the
             relevant directory under <code class="filename">/sys/bus</code>,
             this means that the kernel developers have not yet added modalias
-            support to this bus type. With Linux-3.3.6, this is the case with
+            support to this bus type. With Linux-3.5.2, this is the case with
             ISA busses. Expect this issue to be fixed in later kernel
             versions.
           </p>
@@ -456,8 +456,9 @@
             <a class="xref" href="symlinks.html" title=
             "7.5.&nbsp;Creating Custom Symlinks to Devices">第&nbsp;7.5&nbsp;节
             “Creating Custom Symlinks to Devices”</a> and <a class="xref"
-            href="network.html" title="7.2.&nbsp;通用网络配置">第&nbsp;7.2&nbsp;节
-            “通用网络配置”</a> for examples.
+            href="network.html" title=
+            "7.2.&nbsp;General Network Configuration">第&nbsp;7.2&nbsp;节
+            “General Network Configuration”</a> for examples.
           </p>
         </div>
       </div>
@@ -516,11 +517,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

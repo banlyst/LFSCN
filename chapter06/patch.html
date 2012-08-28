@@ -4,32 +4,32 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.54.&nbsp;Patch-2.6.1
+      6.56.&nbsp;Patch-2.6.1
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="man-db.html" title="Man-DB-2.6.1">上一页</a>
+          <a accesskey="p" href="man-db.html" title="Man-DB-2.6.2">上一页</a>
           <p>
-            Man-DB-2.6.1
+            Man-DB-2.6.2
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="shadow.html" title="Shadow-4.1.5">下一页</a>
+          <a accesskey="n" href="sysklogd.html" title="Sysklogd-1.5">下一页</a>
           <p>
-            Shadow-4.1.5
+            Sysklogd-1.5
           </p>
         </li>
         <li class="up">
@@ -38,19 +38,20 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-patch" name="ch-system-patch"></a>6.54. Patch-2.6.1
+        <a id="ch-system-patch" name="ch-system-patch"></a>6.56. Patch-2.6.1
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Patch 程序包包含一个用于应用由 <span class=
-          "command"><strong>diff</strong></span> 程序创建的 “<span class=
-          "quote">patch</span>” 文件来修改或创建文件的程序。
+          The Patch package contains a program for modifying or creating
+          files by applying a “<span class="quote">patch</span>” file
+          typically created by the <span class=
+          "command"><strong>diff</strong></span> program.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -60,14 +61,14 @@
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">1.9 MB</span>
+              "segbody">3.4 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.54.1. Installation of Patch
+          6.56.1. Installation of Patch
         </h2>
         <p>
           Apply a patch to prevent the test suite from running a test that
@@ -92,7 +93,7 @@
           To test the results, issue:
         </p>
         <pre class="userinput">
-<kbd class="command">make check</kbd>
+<kbd class="command">make -k check</kbd>
 </pre>
         <p>
           Install the package:
@@ -103,7 +104,8 @@
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-patch" name="contents-patch"></a>6.54.2. Patch 的内容
+          <a id="contents-patch" name="contents-patch"></a>6.56.2. Contents
+          of Patch
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -148,15 +150,15 @@
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="man-db.html" title="Man-DB-2.6.1">上一页</a>
+          <a accesskey="p" href="man-db.html" title="Man-DB-2.6.2">上一页</a>
           <p>
-            Man-DB-2.6.1
+            Man-DB-2.6.2
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="shadow.html" title="Shadow-4.1.5">下一页</a>
+          <a accesskey="n" href="sysklogd.html" title="Sysklogd-1.5">下一页</a>
           <p>
-            Shadow-4.1.5
+            Sysklogd-1.5
           </p>
         </li>
         <li class="up">
@@ -165,7 +167,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

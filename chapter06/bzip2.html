@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
@@ -27,9 +27,10 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="ncurses.html" title="Ncurses-5.9">下一页</a>
+          <a accesskey="n" href="pkg-config.html" title=
+          "Pkg-config-0.27">下一页</a>
           <p>
-            Ncurses-5.9
+            Pkg-config-0.27
           </p>
         </li>
         <li class="up">
@@ -38,7 +39,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
@@ -48,9 +49,11 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Bzip2 程序包包含用于压缩和解压缩文件的程序。用 <span class=
-          "command"><strong>bzip2</strong></span> 压缩文本文件比传统的 <span class=
-          "command"><strong>gzip</strong></span> 压缩率更好。
+          The Bzip2 package contains programs for compressing and
+          decompressing files. Compressing text files with <span class=
+          "command"><strong>bzip2</strong></span> yields a much better
+          compression percentage than with the traditional <span class=
+          "command"><strong>gzip</strong></span>.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -60,7 +63,7 @@
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">6.4 MB</span>
+              "segbody">6.9 MB</span>
             </div>
           </div>
         </div>
@@ -82,6 +85,13 @@
         <pre class="userinput">
 <kbd class=
 "command">sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile</kbd>
+</pre>
+        <p>
+          Ensure the man pages are installed into the correct location:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile</kbd>
 </pre>
         <p>
           Prepare Bzip2 for compilation with:
@@ -139,7 +149,8 @@ ln -sv bzip2 /bin/bzcat</kbd>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-bzip2" name="contents-bzip2"></a>6.19.2. Bzip2 的内容
+          <a id="contents-bzip2" name="contents-bzip2"></a>6.19.2. Contents
+          of Bzip2
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -361,9 +372,10 @@ ln -sv bzip2 /bin/bzcat</kbd>
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="ncurses.html" title="Ncurses-5.9">下一页</a>
+          <a accesskey="n" href="pkg-config.html" title=
+          "Pkg-config-0.27">下一页</a>
           <p>
-            Ncurses-5.9
+            Pkg-config-0.27
           </p>
         </li>
         <li class="up">
@@ -372,7 +384,7 @@ ln -sv bzip2 /bin/bzcat</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

@@ -4,48 +4,50 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      7.7.&nbsp;启动脚本如何工作？
+      7.7.&nbsp;How Do These Bootscripts Work?
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
-        第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本
+        第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts
       </h3>
       <ul>
         <li class="prev">
           <a accesskey="p" href="bootscripts.html" title=
-          "LFS-Bootscripts-20120505">上一页</a>
+          "LFS-Bootscripts-20120823">上一页</a>
           <p>
-            LFS-Bootscripts-20120505
+            LFS-Bootscripts-20120823
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="hostname.html" title="配置系统的主机名称">下一页</a>
+          <a accesskey="n" href="hostname.html" title=
+          "Configuring the system hostname">下一页</a>
           <p>
-            配置系统的主机名称
+            Configuring the system hostname
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-scripts-usage" name="ch-scripts-usage"></a>7.7. 启动脚本如何工作？
+        <a id="ch-scripts-usage" name="ch-scripts-usage"></a>7.7. How Do
+        These Bootscripts Work?
       </h1>
       <p>
         Linux uses a special booting facility named SysVinit that is based on
@@ -223,7 +225,7 @@ EOF</kbd>
             </dt>
             <dd>
               <p>
-                这项服务已经开启。
+                The service is started.
               </p>
             </dd>
             <dt>
@@ -232,7 +234,7 @@ EOF</kbd>
             </dt>
             <dd>
               <p>
-                这项服务被停止。
+                The service is stopped.
               </p>
             </dd>
             <dt>
@@ -241,7 +243,7 @@ EOF</kbd>
             </dt>
             <dd>
               <p>
-                这项服务会被重新启动。
+                The service is stopped and then started again.
               </p>
             </dd>
             <dt>
@@ -250,7 +252,9 @@ EOF</kbd>
             </dt>
             <dd>
               <p>
-                关于这项服务的配置文件被更新。当这个服务的配置文件已经被修改，但是服务本身不需要重启的可以使用这个。
+                The configuration of the service is updated. This is used
+                after the configuration file of a service was modified, when
+                the service does not need to be restarted.
               </p>
             </dd>
             <dt>
@@ -259,13 +263,15 @@ EOF</kbd>
             </dt>
             <dd>
               <p>
-                报告这个服务是否被开启。如果被开启，列出它的PID。
+                Tells if the service is running and with which PIDs.
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          你可以自由修改启动流程（毕竟，这是你自己的LFS系统）。这里的文件仅仅是示例。
+          Feel free to modify the way the boot process works (after all, it
+          is your own LFS system). The files given here are an example of how
+          it can be done.
         </p>
       </div>
     </div>
@@ -273,24 +279,25 @@ EOF</kbd>
       <ul>
         <li class="prev">
           <a accesskey="p" href="bootscripts.html" title=
-          "LFS-Bootscripts-20120505">上一页</a>
+          "LFS-Bootscripts-20120823">上一页</a>
           <p>
-            LFS-Bootscripts-20120505
+            LFS-Bootscripts-20120823
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="hostname.html" title="配置系统的主机名称">下一页</a>
+          <a accesskey="n" href="hostname.html" title=
+          "Configuring the system hostname">下一页</a>
           <p>
-            配置系统的主机名称
+            Configuring the system hostname
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

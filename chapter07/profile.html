@@ -4,26 +4,26 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      7.13.&nbsp;Bash初始化文件
+      7.13.&nbsp;The Bash Shell Startup Files
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
-        第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本
+        第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="site.html" title="rc.site文件">上一页</a>
+          <a accesskey="p" href="site.html" title="The rc.site File">上一页</a>
           <p>
-            rc.site文件
+            The rc.site File
           </p>
         </li>
         <li class="next">
@@ -35,73 +35,83 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-scripts-profile" name="ch-scripts-profile"></a>7.13.
-        Bash初始化文件
+        <a id="ch-scripts-profile" name="ch-scripts-profile"></a>7.13. The
+        Bash Shell Startup Files
       </h1>
       <p>
-        Shell程序 <span class="command"><strong>/bin/bash</strong></span> （后面用
-        “<span class="quote">shell</span>”
-        来代替）使用一系列与启动相关的文件创建一个运行环境。每个文件在不同的方面影响登录设定和交互环境。在 <code class=
-        "filename">/etc</code>
-        文件夹中的文件提供全局设定。如果相同的设置文件存在于你的$HOME目录，那些文件会覆盖全局设定。
+        The shell program <span class=
+        "command"><strong>/bin/bash</strong></span> (hereafter referred to as
+        “<span class="quote">the shell</span>”) uses a collection of startup
+        files to help create an environment to run in. Each file has a
+        specific use and may affect login and interactive environments
+        differently. The files in the <code class="filename">/etc</code>
+        directory provide global settings. If an equivalent file exists in
+        the home directory, it may override the global settings.
       </p>
       <p>
-        一个登录 shell 会在使用 <span class=
-        "command"><strong>/bin/login</strong></span> 核对 <code class=
-        "filename">/etc/passwd</code> 文件中的用户信息，成功登陆后启动。一个非登录 shell
-        是从命令行启动的（例如，使用 直接执行 <span class=
-        "command"><strong>/bin/bash</strong></span>）。一个非登录 shell 总是在一个 shell
-        脚本执行时存在。他是非交互式的，因为它会执行一个脚本，不会等待用户输入命令。
+        An interactive login shell is started after a successful login, using
+        <span class="command"><strong>/bin/login</strong></span>, by reading
+        the <code class="filename">/etc/passwd</code> file. An interactive
+        non-login shell is started at the command-line (e.g., <code class=
+        "prompt">[prompt]$</code><span class=
+        "command"><strong>/bin/bash</strong></span>). A non-interactive shell
+        is usually present when a shell script is running. It is
+        non-interactive because it is processing a script and not waiting for
+        user input between commands.
       </p>
       <p>
-        更多信息，查看 <span class="command"><strong>info bash</strong></span> 下的
-        <span class="emphasis"><em>Bash Startup Files and Interactive
-        Shells</em></span> 章节。
+        For more information, see <span class="command"><strong>info
+        bash</strong></span> under the <span class="emphasis"><em>Bash
+        Startup Files and Interactive Shells</em></span> section.
       </p>
       <p>
-        <code class="filename">/etc/profile</code> 文件和 <code class=
-        "filename">~/.bash_profile</code> 文件会在一个 shell 被当作一个登录 shell 时被读取。
+        The files <code class="filename">/etc/profile</code> and <code class=
+        "filename">~/.bash_profile</code> are read when the shell is invoked
+        as an interactive login shell.
       </p>
       <p>
-        <code class="filename">/etc/profile</code>
-        文件设置重要的环境变量来提供本地语言支持。通过设置它们，可以达成:
+        The base <code class="filename">/etc/profile</code> below sets some
+        environment variables necessary for native language support. Setting
+        them properly results in:
       </p>
       <div class="itemizedlist">
         <ul>
           <li>
             <p>
-              将一些程序的输出翻译成本地语言。
+              The output of programs translated into the native language
             </p>
           </li>
           <li>
             <p>
-              正确的将字符分类成字母，数字，或者其它类别。这对 <span class=
-              "command"><strong>bash</strong></span> 正确处理非 ASCII 字符非常重要。
+              Correct classification of characters into letters, digits and
+              other classes. This is necessary for <span class=
+              "command"><strong>bash</strong></span> to properly accept
+              non-ASCII characters in command lines in non-English locales
             </p>
           </li>
           <li>
             <p>
-              根据国家不同进行合适的按字符排序。
+              The correct alphabetical sorting order for the country
             </p>
           </li>
           <li>
             <p>
-              默认合适的页大小。
+              Appropriate default paper size
             </p>
           </li>
           <li>
             <p>
-              正确的时间，日期和价格格式。
+              Correct formatting of monetary, time, and date values
             </p>
           </li>
         </ul>
@@ -247,9 +257,9 @@ EOF</kbd>
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="site.html" title="rc.site文件">上一页</a>
+          <a accesskey="p" href="site.html" title="The rc.site File">上一页</a>
           <p>
-            rc.site文件
+            The rc.site File
           </p>
         </li>
         <li class="next">
@@ -261,11 +271,11 @@ EOF</kbd>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

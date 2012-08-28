@@ -4,17 +4,17 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.9.&nbsp;Glibc-2.15
+      6.9.&nbsp;Glibc-2.16.0
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
@@ -22,9 +22,9 @@
       <ul>
         <li class="prev">
           <a accesskey="p" href="man-pages.html" title=
-          "Man-pages-3.41">上一页</a>
+          "Man-pages-3.42">上一页</a>
           <p>
-            Man-pages-3.41
+            Man-pages-3.42
           </p>
         </li>
         <li class="next">
@@ -40,13 +40,13 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-glibc" name="ch-system-glibc"></a>6.9. Glibc-2.15
+        <a id="ch-system-glibc" name="ch-system-glibc"></a>6.9. Glibc-2.16.0
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
@@ -59,11 +59,11 @@
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">预计编制时间:</strong> <span class=
-              "segbody">14.2 SBU</span>
+              "segbody">17.6 SBU</span>
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">856 MB</span>
+              "segbody">852 MB</span>
             </div>
           </div>
         </div>
@@ -99,33 +99,22 @@
           of achieving a clean build.
         </p>
         <p>
+          Fix a problem that causes the build to fail in the LFS environment:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i 's#&lt;rpc/types.h&gt;#"rpc/types.h"#' sunrpc/rpc_clntout.c</kbd>
+</pre>
+        <p>
           When running <span class="command"><strong>make
           install</strong></span>, a script called <code class=
           "filename">test-installation.pl</code> performs a small sanity test
-          on our newly installed Glibc. However, because our toolchain still
-          points to the <code class="filename">/tools</code> directory, the
-          sanity test would be carried out against the wrong Glibc. We can
-          force the script to check the Glibc we have just installed with the
-          following:
+          on our newly installed Glibc. However, it contains a bug that
+          causes it to fail, so prevent it from running by issuing the
+          following command:
         </p>
         <pre class="userinput">
-<kbd class=
-"command">DL=$(readelf -l /bin/sh | sed -n 's@.*interpret.*/tools\(.*\)]$@\1@p')
-sed -i "s|libs -o|libs -L/usr/lib -Wl,-dynamic-linker=$DL -o|" \
-        scripts/test-installation.pl
-unset DL</kbd>
-</pre>
-        <p>
-          In addition, there is a bug in the <code class=
-          "filename">test-installation.pl</code> script in that it tries to
-          link a test program to a library that isn't installed by
-          <span class="command"><strong>make install</strong></span>. Issue
-          the following <span class="command"><strong>sed</strong></span>
-          command to fix it:
-        </p>
-        <pre class="userinput">
-<kbd class=
-"command">sed -i -e 's/"db1"/&amp; \&amp;\&amp; $name ne "nss_test1"/' scripts/test-installation.pl</kbd>
+<kbd class="command">sed -i '/test-installation.pl/d' Makefile</kbd>
 </pre>
         <p>
           The <span class="command"><strong>ldd</strong></span> shell script
@@ -141,16 +130,12 @@ unset DL</kbd>
 <kbd class="command">sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in</kbd>
 </pre>
         <p>
-          Fix a bug that causes several BLFS packages to segfault:
+          Now fix a problem that causes some applications to crash when
+          utilizing problem nameservers:
         </p>
         <pre class="userinput">
-<kbd class="command">patch -Np1 -i ../glibc-2.15-fixes-1.patch</kbd>
-</pre>
-        <p>
-          Fix a bug that prevents Glibc from building with GCC-4.7.0:
-        </p>
-        <pre class="userinput">
-<kbd class="command">patch -Np1 -i ../glibc-2.15-gcc_fix-1.patch</kbd>
+<kbd class=
+"command">patch -Np1 -i ../glibc-2.16.0-res_query_fix-1.patch</kbd>
 </pre>
         <p>
           The Glibc documentation recommends building Glibc outside of the
@@ -161,21 +146,10 @@ unset DL</kbd>
 cd ../glibc-build</kbd>
 </pre>
         <p>
-          As in Chapter 5, add the needed compiler flags to CFLAGS for x86
-          machines. Here, the optimization of the library is also set for the
-          gcc compiler to enhance compilation speed (-pipe) and package
-          performance (-O3).
-        </p>
-        <pre class="userinput">
-<kbd class="command">case `uname -m` in
-  i?86) echo "CFLAGS += -march=i486 -mtune=native -O3 -pipe" &gt; configparms ;;
-esac</kbd>
-</pre>
-        <p>
           Prepare Glibc for compilation:
         </p>
         <pre class="userinput">
-<kbd class="command">../glibc-2.15/configure  \
+<kbd class="command">../glibc-2.16.0/configure  \
     --prefix=/usr          \
     --disable-profile      \
     --enable-add-ons       \
@@ -218,27 +192,27 @@ esac</kbd>
           </p>
         </div>
         <p>
-          Before running the tests, copy a file from the source tree into our
-          build tree to prevent a couple of test failures, then test the
-          results:
+          Generally a few tests do not pass, but you can generally ignore any
+          of the test failures listed below. Now test the build results:
         </p>
         <pre class="userinput">
-<kbd class="command">cp -v ../glibc-2.15/iconvdata/gconv-modules iconvdata
-make -k check 2&gt;&amp;1 | tee glibc-check-log
+<kbd class="command">make -k check 2&gt;&amp;1 | tee glibc-check-log
 grep Error glibc-check-log</kbd>
 </pre>
         <p>
           You will probably see an expected (ignored) failure in the
-          <span class="emphasis"><em>posix/annexc</em></span> test. In
-          addition the Glibc test suite is somewhat dependent on the host
-          system. This is a list of the most common issues:
+          <span class="emphasis"><em>posix/annexc</em></span> and
+          <span class="emphasis"><em>conform/run-conformtest</em></span>
+          tests. In addition the Glibc test suite is somewhat dependent on
+          the host system. This is a list of the most common issues:
         </p>
         <div class="itemizedlist">
           <ul>
             <li>
               <p>
                 The <span class="emphasis"><em>nptl/tst-clock2</em></span>,
-                <span class="emphasis"><em>nptl/tst-attr3</em></span>, and
+                <span class="emphasis"><em>nptl/tst-attr3</em></span>,
+                <span class="emphasis"><em>tst/tst-cputimer1</em></span>, and
                 <span class="emphasis"><em>rt/tst-cpuclock2</em></span> tests
                 have been known to fail. The reason is not completely
                 understood, but indications are that minor timing issues can
@@ -250,18 +224,6 @@ grep Error glibc-check-log</kbd>
                 The math tests sometimes fail when running on systems where
                 the CPU is not a relatively new genuine Intel or authentic
                 AMD processor.
-              </p>
-            </li>
-            <li>
-              <p>
-                If you have mounted the LFS partition with the <em class=
-                "parameter"><code>noatime</code></em> option, the
-                <span class="emphasis"><em>atime</em></span> test will fail.
-                As mentioned in <a class="xref" href=
-                "../chapter02/mounting.html" title=
-                "2.4.&nbsp;挂载新分区">第&nbsp;2.4&nbsp;节 “挂载新分区”</a>, do not use
-                the <em class="parameter"><code>noatime</code></em> option
-                while building LFS.
               </p>
             </li>
             <li>
@@ -299,12 +261,13 @@ grep Error glibc-check-log</kbd>
 </pre>
         <p>
           Install NIS and RPC related headers that are not installed by
-          default; these are required by several BLFS packages:
+          default; these are required ito rebuild glibc and by several BLFS
+          packages:
         </p>
         <pre class="userinput">
-<kbd class="command">cp -v ../glibc-2.15/sunrpc/rpc/*.h /usr/include/rpc
-cp -v ../glibc-2.15/sunrpc/rpcsvc/*.h /usr/include/rpcsvc
-cp -v ../glibc-2.15/nis/rpcsvc/*.h /usr/include/rpcsvc</kbd>
+<kbd class="command">cp -v ../glibc-2.16.0/sunrpc/rpc/*.h /usr/include/rpc
+cp -v ../glibc-2.16.0/sunrpc/rpcsvc/*.h /usr/include/rpcsvc
+cp -v ../glibc-2.16.0/nis/rpcsvc/*.h /usr/include/rpcsvc</kbd>
 </pre>
         <p>
           The locales that can make the system respond in a different
@@ -331,6 +294,7 @@ localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8
 localedef -i de_DE -f ISO-8859-1 de_DE
 localedef -i de_DE@euro -f ISO-8859-15 de_DE@euro
 localedef -i de_DE -f UTF-8 de_DE.UTF-8
+localedef -i en_GB -f UTF-8 en_GB.UTF-8
 localedef -i en_HK -f ISO-8859-1 en_HK
 localedef -i en_PH -f ISO-8859-1 en_PH
 localedef -i en_US -f ISO-8859-1 en_US
@@ -341,7 +305,10 @@ localedef -i fr_FR -f ISO-8859-1 fr_FR
 localedef -i fr_FR@euro -f ISO-8859-15 fr_FR@euro
 localedef -i fr_FR -f UTF-8 fr_FR.UTF-8
 localedef -i it_IT -f ISO-8859-1 it_IT
+localedef -i it_IT -f UTF-8 it_IT.UTF-8
 localedef -i ja_JP -f EUC-JP ja_JP
+localedef -i ru_RU -f KOI8-R ru_RU.KOI8-R
+localedef -i ru_RU -f UTF-8 ru_RU.UTF-8
 localedef -i tr_TR -f UTF-8 tr_TR.UTF-8
 localedef -i zh_CN -f GB18030 zh_CN.GB18030</kbd>
 </pre>
@@ -351,9 +318,9 @@ localedef -i zh_CN -f GB18030 zh_CN.GB18030</kbd>
         </p>
         <p>
           Alternatively, install all locales listed in the <code class=
-          "filename">glibc-2.15/localedata/SUPPORTED</code> file (it includes
-          every locale listed above and many more) at once with the following
-          time-consuming command:
+          "filename">glibc-2.16.0/localedata/SUPPORTED</code> file (it
+          includes every locale listed above and many more) at once with the
+          following time-consuming command:
         </p>
         <pre class="userinput">
 <kbd class="command">make localedata/install-locales</kbd>
@@ -362,7 +329,7 @@ localedef -i zh_CN -f GB18030 zh_CN.GB18030</kbd>
           Then use the <span class=
           "command"><strong>localedef</strong></span> command to create and
           install locales not listed in the <code class=
-          "filename">glibc-2.15/localedata/SUPPORTED</code> file in the
+          "filename">glibc-2.16.0/localedata/SUPPORTED</code> file in the
           unlikely case you need them.
         </p>
       </div>
@@ -400,7 +367,74 @@ rpc: files
 EOF</kbd>
 </pre>
         <p>
-          One way to determine the local time zone, run the following script:
+          Install timezone data:
+        </p>
+        <pre class="userinput">
+<kbd class="command">tar -xf ../tzdata2012e.tar.gz
+
+mkdir -pv /usr/share/zoneinfo/{posix,right} 
+
+for tz in etcetera southamerica northamerica europe africa antarctica \
+          asia australasia backward pacificnew solar87 solar88 solar89 systemv; do
+    zic -L /dev/null   -d /usr/share/zoneinfo       -y "sh yearistype.sh" ${tz} 
+    zic -L /dev/null   -d /usr/share/zoneinfo/posix -y "sh yearistype.sh" ${tz} 
+    zic -L leapseconds -d /usr/share/zoneinfo/right -y "sh yearistype.sh" ${tz}
+done
+
+cp -v zone.tab iso3166.tab /usr/share/zoneinfo 
+zic -d /usr/share/zoneinfo -p America/New_York</kbd>
+</pre>
+        <div class="variablelist">
+          <p class="title">
+            <b>The meaning of the zic commands:</b>
+          </p>
+          <dl>
+            <dt>
+              <span class="term"><em class="parameter"><code>zic -L /dev/null
+              ...</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                This creates posix timezones, without any leap seconds. It is
+                conventional to put these in both <code class=
+                "filename">zoneinfo</code> and <code class=
+                "filename">zoneinfo/posix</code>. It is necessary to put the
+                POSIX timezones in <code class="filename">zoneinfo</code>,
+                otherwise various test-suites will report errors. On an
+                embedded system, where space is tight and you do not intend
+                to ever update the timezones, you could save 1.9MB by not
+                using the <code class="filename">posix</code> directory, but
+                some applications or test-suites might give less good results
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class="parameter"><code>zic -L
+              leapseconds ...</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                This creates right timezones, including leap seconds. On an
+                embedded system, where space is tight and you do not intend
+                to ever update the timezones, or care about the correct time,
+                you could save 1.9MB by omitting the <code class=
+                "filename">right</code> directory.
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class="parameter"><code>zic ... -p
+              ...</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                This creates the <code class="filename">posixrules</code>
+                file.
+              </p>
+            </dd>
+          </dl>
+        </div>
+        <p>
+          One way to determine the local time zone is to run the following
+          script:
         </p>
         <pre class="userinput">
 <kbd class="command">tzselect</kbd>
@@ -905,8 +939,8 @@ mkdir /etc/ld.so.conf.d</kbd>
                     Used internally by Glibc as a gross hack to get broken
                     programs (e.g., some Motif applications) running. See
                     comments in <code class=
-                    "filename">glibc-2.15/locale/broken_cur_max.c</code> for
-                    more information
+                    "filename">glibc-2.16.0/locale/broken_cur_max.c</code>
+                    for more information
                   </p>
                 </td>
               </tr>
@@ -1211,9 +1245,9 @@ mkdir /etc/ld.so.conf.d</kbd>
       <ul>
         <li class="prev">
           <a accesskey="p" href="man-pages.html" title=
-          "Man-pages-3.41">上一页</a>
+          "Man-pages-3.42">上一页</a>
           <p>
-            Man-pages-3.41
+            Man-pages-3.42
           </p>
         </li>
         <li class="next">
@@ -1229,7 +1263,7 @@ mkdir /etc/ld.so.conf.d</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

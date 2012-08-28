@@ -4,17 +4,17 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      5.9.&nbsp;GCC-4.7.0 - 第二遍
+      5.9.&nbsp;GCC-4.7.1 - 第二遍
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;5&nbsp;章&nbsp;搭建临时系统
@@ -28,9 +28,9 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="tcl.html" title="Tcl-8.5.11">下一页</a>
+          <a accesskey="n" href="tcl.html" title="Tcl-8.5.12">下一页</a>
           <p>
-            Tcl-8.5.11
+            Tcl-8.5.12
           </p>
         </li>
         <li class="up">
@@ -39,29 +39,29 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
         <a id="ch-tools-gcc-pass2" name="ch-tools-gcc-pass2"></a>5.9.
-        GCC-4.7.0 - 第二遍
+        GCC-4.7.1 - 第二遍
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          GCC ç¨åºååå« GNU ç¼è¯å¨éï¼å¶ä¸­åæ¬ C å C++
-          ç¼è¯å¨ã
+          The GCC package contains the GNU compiler collection, which
+          includes the C and C++ compilers.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">预计编制时间:</strong> <span class=
-              "segbody">7.0 SBU</span>
+              "segbody">7.1 SBU</span>
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">1.5 GB</span>
+              "segbody">1.8 GB</span>
             </div>
           </div>
         </div>
@@ -116,12 +116,12 @@ done</kbd>
           与第一次编译 GCC 相同，它需要 GMP、MPFR 和 MPC 程序包。解开压缩包冰将它们移动到指定名称的目录中：
         </p>
         <pre class="userinput">
-<kbd class="command">tar -jxf ../mpfr-3.1.0.tar.bz2
-mv -v mpfr-3.1.0 mpfr
+<kbd class="command">tar -jxf ../mpfr-3.1.1.tar.bz2
+mv -v mpfr-3.1.1 mpfr
 tar -Jxf ../gmp-5.0.5.tar.xz
 mv -v gmp-5.0.5 gmp
-tar -zxf ../mpc-0.9.tar.gz
-mv -v mpc-0.9 mpc</kbd>
+tar -zxf ../mpc-1.0.tar.gz
+mv -v mpc-1.0 mpc</kbd>
 </pre>
         <p>
           再创建一个独立的编制目录：
@@ -140,7 +140,7 @@ cd ../gcc-build</kbd>
 <kbd class="command">CC=$LFS_TGT-gcc \
 AR=$LFS_TGT-ar                  \
 RANLIB=$LFS_TGT-ranlib          \
-../gcc-4.7.0/configure          \
+../gcc-4.7.1/configure          \
     --prefix=/tools             \
     --with-local-prefix=/tools  \
     --with-native-system-header-dir=/tools/include \
@@ -153,7 +153,7 @@ RANLIB=$LFS_TGT-ranlib          \
     --disable-multilib          \
     --disable-bootstrap         \
     --disable-libgomp           \
-    --with-mpfr-include=$(pwd)/../gcc-4.7.0/mpfr/src \
+    --with-mpfr-include=$(pwd)/../gcc-4.7.1/mpfr/src \
     --with-mpfr-lib=$(pwd)/mpfr/src/.libs</kbd>
 </pre>
         <div class="variablelist">
@@ -297,8 +297,8 @@ readelf -l a.out | grep ': /tools'</kbd>
         <p>
           有关此程序包的细节位于<a class="xref" href=
           "../chapter06/gcc.html#contents-gcc" title=
-          "6.17.2.&nbsp;GCC çåå®¹">第&nbsp;6.17.2&nbsp;节 “GCC
-          çåå®¹”</a>。
+          "6.17.2.&nbsp;Contents of GCC">第&nbsp;6.17.2&nbsp;节 “Contents of
+          GCC”</a>。
         </p>
       </div>
     </div>
@@ -312,9 +312,9 @@ readelf -l a.out | grep ': /tools'</kbd>
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="tcl.html" title="Tcl-8.5.11">下一页</a>
+          <a accesskey="n" href="tcl.html" title="Tcl-8.5.12">下一页</a>
           <p>
-            Tcl-8.5.11
+            Tcl-8.5.12
           </p>
         </li>
         <li class="up">
@@ -323,7 +323,7 @@ readelf -l a.out | grep ': /tools'</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

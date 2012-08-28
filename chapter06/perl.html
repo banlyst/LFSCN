@@ -4,17 +4,17 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.35.&nbsp;Perl-5.14.2
+      6.37.&nbsp;Perl-5.16.1
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
@@ -39,34 +39,35 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-perl" name="ch-system-perl"></a>6.35. Perl-5.14.2
+        <a id="ch-system-perl" name="ch-system-perl"></a>6.37. Perl-5.16.1
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Perl 程序包包含实用抽取和报表语言。
+          The Perl package contains the Practical Extraction and Report
+          Language.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">预计编制时间:</strong> <span class=
-              "segbody">7.6 SBU</span>
+              "segbody">7.5 SBU</span>
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">235 MB</span>
+              "segbody">247 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.35.1. Installation of Perl
+          6.37.1. Installation of Perl
         </h2>
         <p>
           First create a basic <code class="filename">/etc/hosts</code> file
@@ -76,12 +77,6 @@
         <pre class="userinput">
 <kbd class=
 "command">echo "127.0.0.1 localhost $(hostname)" &gt; /etc/hosts</kbd>
-</pre>
-        <p>
-          Apply a patch to fix a security vulnerability in Perl:
-        </p>
-        <pre class="userinput">
-<kbd class="command">patch -Np1 -i ../perl-5.14.2-security_fix-1.patch</kbd>
 </pre>
         <p>
           This version of Perl now builds the Compress::Raw::Zlib module. By
@@ -173,7 +168,7 @@
           To test the results (approximately 2.5 SBU), issue:
         </p>
         <pre class="userinput">
-<kbd class="command">make test</kbd>
+<kbd class="command">make -k test</kbd>
 </pre>
         <p>
           Install the package:
@@ -184,7 +179,8 @@
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-perl" name="contents-perl"></a>6.35.2. Perl 的内容
+          <a id="contents-perl" name="contents-perl"></a>6.37.2. Contents of
+          Perl
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -192,7 +188,7 @@
               <strong class="segtitle">Installed programs:</strong>
               <span class="segbody">a2p, c2ph, config_data, corelist, cpan,
               cpan2dist, cpanp, cpanp-run-perl, dprofpp, enc2xs, find2perl,
-              h2ph, h2xs, instmodsh, json_pp, libnetcfg, perl, perl5.14.2
+              h2ph, h2xs, instmodsh, json_pp, libnetcfg, perl, perl5.16.1
               (link to perl), perlbug, perldoc, perlivp, perlthanks (link to
               perlbug), piconv, pl2pm, pod2html, pod2latex, pod2man,
               pod2text, pod2usage, podchecker, podselect, prove, psed (link
@@ -472,7 +468,7 @@
                   <p>
                     <a id="perl-version" name="perl-version"></a><span class=
                     "term"><span class=
-                    "command"><strong>perl5.14.2</strong></span></span>
+                    "command"><strong>perl5.16.1</strong></span></span>
                   </p>
                 </td>
                 <td>
@@ -845,7 +841,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

@@ -4,73 +4,91 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      7.9.&nbsp;配置setclock脚本
+      7.9.&nbsp;Configuring the setclock Script
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
-        第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本
+        第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="hostname.html" title="配置系统的主机名称">上一页</a>
+          <a accesskey="p" href="hostname.html" title=
+          "Configuring the system hostname">上一页</a>
           <p>
-            配置系统的主机名称
+            Configuring the system hostname
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="console.html" title="配置Linux控制台">下一页</a>
+          <a accesskey="n" href="console.html" title=
+          "Configuring the Linux Console">下一页</a>
           <p>
-            配置Linux控制台
+            Configuring the Linux Console
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
         <a id="ch-scripts-setclock" name="ch-scripts-setclock"></a>7.9.
-        配置setclock脚本
+        Configuring the setclock Script
       </h1>
       <p>
-        <span class="command"><strong>setclock</strong></span> 从硬件时钟读取时间，通常是
-        BIOS 或者 CMOS。如果你的硬件时钟设置成 UTC，这个脚本会将硬件时间根据 <code class=
-        "filename">/etc/localtime</code> 文件（这个文件告诉 <span class=
-        "command"><strong>hwclock</strong></span>
-        程序用户所在的时区）转化成本地时间。没有方法能检测出你的时钟是否被设置成 UTC，所以需要用户自己设置。
+        The <span class="command"><strong>setclock</strong></span> script
+        reads the time from the hardware clock, also known as the BIOS or the
+        Complementary Metal Oxide Semiconductor (CMOS) clock. If the hardware
+        clock is set to UTC, this script will convert the hardware clock's
+        time to the local time using the <code class=
+        "filename">/etc/localtime</code> file (which tells the <span class=
+        "command"><strong>hwclock</strong></span> program which timezone the
+        user is in). There is no way to detect whether or not the hardware
+        clock is set to UTC, so this needs to be configured manually.
       </p>
       <p>
-        当内核在启动后检测硬件时 <span class="command"><strong>setclock</strong></span>
-        程序被 <span class="application">udev</span>
-        调用。用户也可以用stop参数执行该命令，这样会将系统时间保存在CMOS中。
+        The <span class="command"><strong>setclock</strong></span> is run via
+        <span class="application">udev</span> when the kernel detects the
+        hardware capability upon boot. It can also be run manually with the
+        stop parameter to store the system time to the CMOS clock.
       </p>
       <p>
-        如果你想不起来你的时钟是否被设置成 UTC，可以通过执行 <strong class="userinput"><code>hwclock
-        --localtime --show</code></strong>
-        命令查看。如果输出的时间是你的手表上的时间，那么硬件时间被设置成了本地时间。如果 <span class=
-        "command"><strong>hwclock</strong></span> 输出的不是本地时间，那么基本上它被设置成UTC时间。
+        If you cannot remember whether or not the hardware clock is set to
+        UTC, find out by running the <strong class="userinput"><code>hwclock
+        --localtime --show</code></strong> command. This will display what
+        the current time is according to the hardware clock. If this time
+        matches whatever your watch says, then the hardware clock is set to
+        local time. If the output from <span class=
+        "command"><strong>hwclock</strong></span> is not local time, chances
+        are it is set to UTC time. Verify this by adding or subtracting the
+        proper amount of hours for the timezone to the time shown by
+        <span class="command"><strong>hwclock</strong></span>. For example,
+        if you are currently in the MST timezone, which is also known as GMT
+        -0700, add seven hours to the local time.
       </p>
       <p>
-        更改下面变量 <code class="envar">UTC</code> 的值为 <em class=
-        "parameter"><code>0</code></em> 如果你的硬件时钟没有被设置成UTC时间。
+        Change the value of the <code class="envar">UTC</code> variable below
+        to a value of <em class="parameter"><code>0</code></em> (zero) if the
+        hardware clock is <span class="emphasis"><em>not</em></span> set to
+        UTC time.
       </p>
       <p>
-        可以使用下面的命令创建一个新的文件 <code class="filename">/etc/sysconfig/clock</code>：
+        Create a new file <code class="filename">/etc/sysconfig/clock</code>
+        by running the following:
       </p>
       <pre class="userinput">
 <kbd class="command">cat &gt; /etc/sysconfig/clock &lt;&lt; "EOF"
@@ -86,9 +104,11 @@ CLOCKPARAMS=
 EOF</kbd>
 </pre>
       <p>
-        这里有一个很好的关于如何处理LFS系统中的时间的提示<a class="ulink" href=
-        "http://www.linuxfromscratch.org/hints/downloads/files/time.txt">http://www.linuxfromscratch.org/hints/downloads/files/time.txt</a>。它解释了时区，UTC，还有
-        <code class="envar">TZ</code> 环境变量等等。
+        A good hint explaining how to deal with time on LFS is available at
+        <a class="ulink" href=
+        "http://www.linuxfromscratch.org/hints/downloads/files/time.txt">http://www.linuxfromscratch.org/hints/downloads/files/time.txt</a>.
+        It explains issues such as time zones, UTC, and the <code class=
+        "envar">TZ</code> environment variable.
       </p>
       <div class="admon note">
         <img alt="[注意]" src="../images/note.png" />
@@ -96,32 +116,34 @@ EOF</kbd>
           注意
         </h3>
         <p>
-          参数 CLOCKPARAMS 和 UTC 也可以在 <code class=
-          "filename">/etc/sysconfig/rc.site</code> 文件中设置。
+          The CLOCKPARAMS and UTC paramaters may be alternatively set in the
+          <code class="filename">/etc/sysconfig/rc.site</code> file.
         </p>
       </div>
     </div>
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="hostname.html" title="配置系统的主机名称">上一页</a>
+          <a accesskey="p" href="hostname.html" title=
+          "Configuring the system hostname">上一页</a>
           <p>
-            配置系统的主机名称
+            Configuring the system hostname
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="console.html" title="配置Linux控制台">下一页</a>
+          <a accesskey="n" href="console.html" title=
+          "Configuring the Linux Console">下一页</a>
           <p>
-            配置Linux控制台
+            Configuring the Linux Console
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

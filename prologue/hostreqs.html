@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         序
@@ -37,7 +37,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
@@ -103,13 +103,13 @@
           <li>
             <p>
               <span class="strong"><strong>Gcc-4.1.2</strong></span> (高于
-              4.7.0 的版本因未经测试而不推荐)
+              4.7.1 的版本因未经测试而不推荐)
             </p>
           </li>
           <li>
             <p>
               <span class="strong"><strong>Glibc-2.5.1</strong></span> (高于
-              2.15 的版本因未经测试而不推荐)
+              2.16.0 的版本因未经测试而不推荐)
             </p>
           </li>
           <li>
@@ -200,7 +200,6 @@ bash --version | head -n1 | cut -d" " -f2-4
 echo "/bin/sh -&gt; `readlink -f /bin/sh`"
 echo -n "Binutils: "; ld --version | head -n1 | cut -d" " -f3-
 bison --version | head -n1
-
 if [ -e /usr/bin/yacc ];
   then echo "/usr/bin/yacc -&gt; `readlink -f /usr/bin/yacc`"; 
   else echo "yacc not found"; fi
@@ -210,7 +209,6 @@ echo -n "Coreutils: "; chown --version | head -n1 | cut -d")" -f2
 diff --version | head -n1
 find --version | head -n1
 gawk --version | head -n1
-
 if [ -e /usr/bin/awk ];
   then echo "/usr/bin/awk -&gt; `readlink -f /usr/bin/awk`"; 
   else echo "awk not found"; fi
@@ -230,10 +228,10 @@ echo "Texinfo: `makeinfo --version | head -n1`"
 xz --version | head -n1
 
 echo 'main(){}' &gt; dummy.c &amp;&amp; gcc -o dummy dummy.c
-if [ -x dummy ]; then echo "gcc compilation OK";
+if [ -x dummy ] 
+  then echo "gcc compilation OK";
   else echo "gcc compilation failed"; fi
-rm -f dummy.c dummy
-</code>
+rm -f dummy.c dummy</code>
 EOF
 
 bash version-check.sh</kbd>
@@ -258,7 +256,7 @@ bash version-check.sh</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

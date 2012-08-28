@@ -4,26 +4,27 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      7.10.&nbsp;配置Linux控制台
+      7.10.&nbsp;Configuring the Linux Console
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
-        第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本
+        第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="setclock.html" title="配置setclock脚本">上一页</a>
+          <a accesskey="p" href="setclock.html" title=
+          "Configuring the setclock Script">上一页</a>
           <p>
-            配置setclock脚本
+            Configuring the setclock Script
           </p>
         </li>
         <li class="next">
@@ -35,38 +36,47 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
         <a id="ch-scripts-console" name="ch-scripts-console"></a>7.10.
-        配置Linux控制台
+        Configuring the Linux Console
       </h1>
       <p>
-        这一章节谈论如何设置 <span class="command"><strong>console</strong></span>
-        启动脚本。包括正确配置键盘表，控制台字体，系统启动级别。如果不使用非ASCII字符且键盘是标准US键盘的话，本章节的大部分内容可以跳过。没有相应的配置文件的话，（或者
-        <code class="filename">rc.site</code> 文件中等价的设置），<span class=
-        "command"><strong>console</strong></span> 启动脚本不会做任何事情。
+        This section discusses how to configure the <span class=
+        "command"><strong>console</strong></span> bootscript that sets up the
+        keyboard map, console font and console kernel log level. If non-ASCII
+        characters (e.g., the copyright sign, the British pound sign and Euro
+        symbol) will not be used and the keyboard is a U.S. one, much of this
+        section can be skipped. Without the configuration file, (or
+        equivalent settings in <code class="filename">rc.site</code>), the
+        <span class="command"><strong>console</strong></span> bootscript will
+        do nothing.
       </p>
       <p>
-        <span class="command"><strong>console</strong></span> 脚本读取
-        <code class="filename">/etc/sysconfig/console</code>
-        文件来获取相关的配置信息，决定使用哪个键盘映射表和屏幕字体。关于如何让控制台支持其他语言可以在下面的地址找着答案 <a class=
-        "ulink" href=
-        "http://www.tldp.org/HOWTO/HOWTO-INDEX/other-lang.html">http://www.tldp.org/HOWTO/HOWTO-INDEX/other-lang.html</a>。如果还有疑问，可以查看
-        <code class="filename">/lib/kbd</code> 文件夹的内容来获取合法的键盘映射表和屏幕字体。还可以查看
-        <code class="filename">loadkeys(1)</code> 和 <code class=
-        "filename">setfont(8)</code> 来确定如何使用正确的参数运行这些程序。
+        The <span class="command"><strong>console</strong></span> script
+        reads the <code class="filename">/etc/sysconfig/console</code> file
+        for configuration information. Decide which keymap and screen font
+        will be used. Various language-specific HOWTOs can also help with
+        this, see <a class="ulink" href=
+        "http://www.tldp.org/HOWTO/HOWTO-INDEX/other-lang.html">http://www.tldp.org/HOWTO/HOWTO-INDEX/other-lang.html</a>.
+        If still in doubt, look in the <code class="filename">/lib/kbd</code>
+        directory for valid keymaps and screen fonts. Read <code class=
+        "filename">loadkeys(1)</code> and <code class=
+        "filename">setfont(8)</code> manual pages to determine the correct
+        arguments for these programs.
       </p>
       <p>
-        <code class="filename">/etc/sysconfig/console</code>
-        应该包含如下形式的行：变量="值"。下面是合法的变量：
+        The <code class="filename">/etc/sysconfig/console</code> file should
+        contain lines of the form: VARIABLE="value". The following variables
+        are recognized:
       </p>
       <div class="variablelist">
         <dl>
@@ -75,8 +85,10 @@
           </dt>
           <dd>
             <p>
-              这个变量可以像 <span class="command"><strong>dmesg</strong></span>
-              命令一样定义内核消息级别（内核会把根据这个级别确定的一类内核信息发送到控制台）。从"1"（没有消息）到"8"都是合法的等级。默认的等级是"7"。
+              This variable specifies the log level for kernel messages sent
+              to the console as set by <span class=
+              "command"><strong>dmesg</strong></span>. Valid levels are from
+              "1" (no messages) to "8". The default level is "7".
             </p>
           </dd>
           <dt>
@@ -84,10 +96,13 @@
           </dt>
           <dd>
             <p>
-              这个变量定义了 <span class="command"><strong>loadkeys</strong></span>
-              程序的参数，通常是你的键盘映射表的名字，例如，“<span class=
-              "quote">es</span>”。如果这个变量没有设置，启动脚本不会运行 <span class=
-              "command"><strong>loadkeys</strong></span> 程序，默认的键盘映射表会启用。
+              This variable specifies the arguments for the <span class=
+              "command"><strong>loadkeys</strong></span> program, typically,
+              the name of keymap to load, e.g., “<span class=
+              "quote">es</span>”. If this variable is not set, the bootscript
+              will not run the <span class=
+              "command"><strong>loadkeys</strong></span> program, and the
+              default kernel keymap will be used.
             </p>
           </dd>
           <dt>
@@ -95,9 +110,13 @@
           </dt>
           <dd>
             <p>
-              这个（很少用到的）变量指定第二次调用 <span class=
-              "command"><strong>loadkeys</strong></span>
-              程序时传递给它的参数。这在标准键盘表并不完全匹配你的键盘，需要做小幅调整时非常有用。例如，为了加入Euro标志到一个通常并不包含它的键盘映射表中，可以将这个变量设置成“<span class="quote">euro2</span>”。
+              This (rarely used) variable specifies the arguments for the
+              second call to the <span class=
+              "command"><strong>loadkeys</strong></span> program. This is
+              useful if the stock keymap is not completely satisfactory and a
+              small adjustment has to be made. E.g., to include the Euro sign
+              into a keymap that normally doesn't have it, set this variable
+              to “<span class="quote">euro2</span>”.
             </p>
           </dd>
           <dt>
@@ -105,16 +124,19 @@
           </dt>
           <dd>
             <p>
-              这个变量指定调用 <span class="command"><strong>setfont</strong></span>
-              程序的参数。通常包括字体名称，“<span class=
-              "quote">-m</span>”，需要加载的被应用程序使用的字符集（application character
-              map）。例如,为了加载“<span class=
-              "quote">lat1-16</span>”字体和“<span class="quote">8859-1</span>”字符集（美国中较为常用），设置这个变量为“<span class="quote">lat1-16
-              -m 8859-1</span>”。 In UTF-8 mode, the kernel uses the
-              application character map for conversion of composed 8-bit key
-              codes in the keymap to UTF-8, and thus the argument of the "-m"
-              parameter should be set to the encoding of the composed key
-              codes in the keymap.
+              This variable specifies the arguments for the <span class=
+              "command"><strong>setfont</strong></span> program. Typically,
+              this includes the font name, “<span class="quote">-m</span>”,
+              and the name of the application character map to load. E.g., in
+              order to load the “<span class="quote">lat1-16</span>” font
+              together with the “<span class="quote">8859-1</span>”
+              application character map (as it is appropriate in the USA),
+              set this variable to “<span class="quote">lat1-16 -m
+              8859-1</span>”. In UTF-8 mode, the kernel uses the application
+              character map for conversion of composed 8-bit key codes in the
+              keymap to UTF-8, and thus the argument of the "-m" parameter
+              should be set to the encoding of the composed key codes in the
+              keymap.
             </p>
           </dd>
           <dt>
@@ -122,10 +144,11 @@
           </dt>
           <dd>
             <p>
-              将这个变量设置为“<span class="quote">1</span>”，“<span class=
-              "quote">yes</span>”或“<span class=
-              "quote">true</span>”可以让控制台运行在UTF-8模式。这对基于UTF-8的 locale
-              很有用，但是对其他的有害。
+              Set this variable to “<span class="quote">1</span>”,
+              “<span class="quote">yes</span>” or “<span class=
+              "quote">true</span>” in order to put the console into UTF-8
+              mode. This is useful in UTF-8 based locales and harmful
+              otherwise.
             </p>
           </dd>
           <dt>
@@ -246,7 +269,7 @@ EOF</kbd>
               character by themselves, but put an accent on the character
               produced by the next key) or define composition rules (such as:
               “<span class="quote">press Ctrl+. A E to get Æ</span>” in the
-              default keymap). Linux-3.3.6 interprets dead keys and
+              default keymap). Linux-3.5.2 interprets dead keys and
               composition rules in the keymap correctly only when the source
               characters to be composed together are not multibyte. This
               deficiency doesn't affect keymaps for European languages,
@@ -261,8 +284,12 @@ EOF</kbd>
           </li>
           <li>
             <p>
-              对于中文，日文，棒子文及一些其他的语言的用户，Linux的控制台无法通过简单配置显示他们需要的字体。需要这些语言的用户需要安装
-              X Window 系统，包含这些语言的字符的字体，黑又合适的输入法（例如，SCIM，它支持很多种语言）。
+              For Chinese, Japanese, Korean and some other languages, the
+              Linux console cannot be configured to display the needed
+              characters. Users who need such languages should install the X
+              Window System, fonts that cover the necessary character ranges,
+              and the proper input method (e.g., SCIM, it supports a wide
+              variety of languages).
             </p>
           </li>
         </ul>
@@ -285,9 +312,10 @@ EOF</kbd>
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="setclock.html" title="配置setclock脚本">上一页</a>
+          <a accesskey="p" href="setclock.html" title=
+          "Configuring the setclock Script">上一页</a>
           <p>
-            配置setclock脚本
+            Configuring the setclock Script
           </p>
         </li>
         <li class="next">
@@ -299,11 +327,11 @@ EOF</kbd>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "第&nbsp;7&nbsp;章&nbsp;设置系统启动脚本">上一级</a>
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

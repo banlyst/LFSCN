@@ -4,17 +4,17 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.58.&nbsp;Tar-1.26
+      6.59.&nbsp;Tar-1.26
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
@@ -39,35 +39,41 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-tar" name="ch-system-tar"></a>6.58. Tar-1.26
+        <a id="ch-system-tar" name="ch-system-tar"></a>6.59. Tar-1.26
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Tar 程序包包含一个归档程序。
+          The Tar package contains an archiving program.
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
               <strong class="segtitle">预计编制时间:</strong> <span class=
-              "segbody">1.9 SBU</span>
+              "segbody">2.4 SBU</span>
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">21.2 MB</span>
+              "segbody">34 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.58.1. Installation of Tar
+          6.59.1. Installation of Tar
         </h2>
+        <p>
+          Fix an incompatibility between this package and Glibc-2.16.0:
+        </p>
+        <pre class="userinput">
+<kbd class="command">sed -i -e '/gets is a/d' gnu/stdio.in.h</kbd>
+</pre>
         <p>
           Prepare Tar for compilation:
         </p>
@@ -118,7 +124,8 @@ make -C doc install-html docdir=/usr/share/doc/tar-1.26</kbd>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-tar" name="contents-tar"></a>6.58.2. Tar 的内容
+          <a id="contents-tar" name="contents-tar"></a>6.59.2. Contents of
+          Tar
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -193,7 +200,7 @@ make -C doc install-html docdir=/usr/share/doc/tar-1.26</kbd>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>

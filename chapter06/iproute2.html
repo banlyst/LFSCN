@@ -4,26 +4,26 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.47.&nbsp;IPRoute2-3.3.0
+      6.50.&nbsp;IPRoute2-3.5.1
     </title>
     <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
     <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
     "text/css" media="print" />
   </head>
-  <body class="lfs" id="lfs-SVN-20120514">
+  <body class="lfs" id="lfs-SVN-20120827">
     <div class="navheader">
       <h4>
-        Linux From Scratch - 版本 SVN-20120514
+        Linux From Scratch - 版本 SVN-20120827
       </h4>
       <h3>
         第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="gzip.html" title="Gzip-1.4">上一页</a>
+          <a accesskey="p" href="gzip.html" title="Gzip-1.5">上一页</a>
           <p>
-            Gzip-1.4
+            Gzip-1.5
           </p>
         </li>
         <li class="next">
@@ -38,14 +38,14 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
-        <a id="ch-system-iproute2" name="ch-system-iproute2"></a>6.47.
-        IPRoute2-3.3.0
+        <a id="ch-system-iproute2" name="ch-system-iproute2"></a>6.50.
+        IPRoute2-3.5.1
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
@@ -60,14 +60,14 @@
             </div>
             <div class="seg">
               <strong class="segtitle">需求磁盘空间:</strong> <span class=
-              "segbody">6.6 MB</span>
+              "segbody">7.3 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.47.1. Installation of IPRoute2
+          6.50.1. Installation of IPRoute2
         </h2>
         <p>
           The <span class="command"><strong>arpd</strong></span> binary
@@ -84,7 +84,7 @@
         <pre class="userinput">
 <kbd class="command">sed -i '/^TARGETS/s@arpd@@g' misc/Makefile
 sed -i /ARPD/d Makefile
-rm man/man8/arpd.8</kbd>
+sed -i 's/arpd.8//' man/man8/Makefile</kbd>
 </pre>
         <p>
           Compile the package:
@@ -125,15 +125,14 @@ rm man/man8/arpd.8</kbd>
           Install the package:
         </p>
         <pre class="userinput">
-<kbd class="command">
-make DESTDIR=              \
+<kbd class="command">make DESTDIR=              \
      MANDIR=/usr/share/man \
-     DOCDIR=/usr/share/doc/iproute2-3.3.0 install</kbd>
+     DOCDIR=/usr/share/doc/iproute2-3.5.1 install</kbd>
 </pre>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-iproute2" name="contents-iproute2"></a>6.47.2.
+          <a id="contents-iproute2" name="contents-iproute2"></a>6.50.2.
           Contents of IPRoute2
         </h2>
         <div class="segmentedlist">
@@ -147,7 +146,7 @@ make DESTDIR=              \
             <div class="seg">
               <strong class="segtitle">Installed directories:</strong>
               <span class="segbody">/etc/iproute2, /lib/tc,
-              /usr/share/doc/iproute2-3.3.0, /usr/lib/tc</span>
+              /usr/share/doc/iproute2-3.5.1, /usr/lib/tc</span>
             </div>
           </div>
         </div>
@@ -456,9 +455,9 @@ make DESTDIR=              \
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="gzip.html" title="Gzip-1.4">上一页</a>
+          <a accesskey="p" href="gzip.html" title="Gzip-1.5">上一页</a>
           <p>
-            Gzip-1.4
+            Gzip-1.5
           </p>
         </li>
         <li class="next">
@@ -473,7 +472,7 @@ make DESTDIR=              \
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - 版本 SVN-20120514">起始页</a>
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
         </li>
       </ul>
     </div>
