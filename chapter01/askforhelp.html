@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      1.5.&nbsp;请求帮助
+    </title>
+    <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="lfs" id="lfs-SVN-20120827">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 SVN-20120827
+      </h4>
+      <h3>
+        第&nbsp;1&nbsp;章&nbsp;介绍
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="resources.html" title="相关资源">上一页</a>
+          <p>
+            相关资源
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../part2.html" title="准备工作">下一页</a>
+          <p>
+            准备工作
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter01.html" title=
+          "第&nbsp;1&nbsp;章&nbsp;介绍">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-intro-askforhelp" name="ch-intro-askforhelp"></a>1.5. 请求帮助
+      </h1>
+      <p>
+        如果根据本书的示例进行安装时发生了任何错误，请检查常见问题列表 <a class="ulink" href=
+        "http://www.linuxfromscratch.org/faq/#generalfaq">http://www.linuxfromscratch.org/faq/#generalfaq</a>。大多数问题会在这里解决。如果你的问题在这里没有解决，试着自己找到错误信息。下面的提示会在纠错中提供帮助：<a class="ulink"
+        href=
+        "http://www.linuxfromscratch.org/hints/downloads/files/errors.txt">http://www.linuxfromscratch.org/hints/downloads/files/errors.txt</a>。
+      </p>
+      <p>
+        如果你的问题不能在常见问题列表中找到答案，请查找邮件列表 <a class="ulink" href=
+        "http://www.linuxfromscratch.org/search.html">http://www.linuxfromscratch.org/search.html</a>。
+      </p>
+      <p>
+        我们还有强大的 LFS 社区，愿意通过邮件列表和 IRC 提供帮助 (参考本书中 <a class="xref" href=
+        "resources.html" title="1.4.&nbsp;相关资源">第&nbsp;1.4&nbsp;节
+        “相关资源”</a>)。然而，我们每天都会收到几个支持问题，其中有很多都只需查看 FAQ
+        或搜索邮件列表即可回答。所以，为了我们能提供最大的帮助，你要自己先做一点调查。这样我们就能专注于更不寻常的支持需求。如果你的搜索没有产生解决方案，请在帮助请求中包含以下所有信息。
+      </p>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          1.5.1. 需要提及
+        </h2>
+        <p>
+          简要描述遇到的问题，并提供以下内容：
+        </p>
+        <div class="itemizedlist">
+          <ul>
+            <li>
+              <p>
+                使用的本书版本 (此处为 SVN-20120827)
+              </p>
+            </li>
+            <li>
+              <p>
+                用于创建 LFS 的宿主发行版和版本
+              </p>
+            </li>
+            <li>
+              <p>
+                <a class="xref" href=
+                "../prologue/hostreqs.html#version-check">第&nbsp;vii&nbsp;节
+                “宿主系统需求”</a> 的输出
+              </p>
+            </li>
+            <li>
+              <p>
+                出现问题的程序包或章节
+              </p>
+            </li>
+            <li>
+              <p>
+                错误消息或症状
+              </p>
+            </li>
+            <li>
+              <p>
+                注明是否从本书偏离过。
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="admon note">
+          <img alt="[注意]" src="../images/note.png" />
+          <h3>
+            注意
+          </h3>
+          <p>
+            偏离本书<span class="emphasis"><em>不</em></span>代表我们不会帮你。无论如何，LFS
+            都有关个人喜好。走在改动的第一线会帮助我们估计你的问题的可能原因。
+          </p>
+        </div>
+      </div>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          1.5.2. 配置脚本问题
+        </h2>
+        <p>
+          如果在运行 <span class="command"><strong>configure</strong></span>
+          脚本时出现问题，检查 <code class="filename">config.log</code> 文件。此文件可能包含在运行
+          <span class="command"><strong>configure</strong></span>
+          期间出现的未印出至屏幕的问题。请求帮助时包含<span class=
+          "emphasis"><em>相关</em></span>行的内容。
+        </p>
+      </div>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          1.5.3. 编译问题
+        </h2>
+        <p>
+          寻求编译问题的原因时屏幕输出和几个文件的内容会很有用。<span class=
+          "command"><strong>configure</strong></span> 脚本和 <span class=
+          "command"><strong>make</strong></span>
+          运行过程中的屏幕输出很有帮助。不必包含整个输出，但是一定要包含足够的相关信息。以下是 <span class=
+          "command"><strong>make</strong></span> 的屏幕输出要包含的信息类型：
+        </p>
+        <pre class="screen">
+<code class="computeroutput">gcc -DALIASPATH=\"/mnt/lfs/usr/share/locale:.\"
+-DLOCALEDIR=\"/mnt/lfs/usr/share/locale\"
+-DLIBDIR=\"/mnt/lfs/usr/lib\"
+-DINCLUDEDIR=\"/mnt/lfs/usr/include\" -DHAVE_CONFIG_H -I. -I.
+-g -O2 -c getopt1.c
+gcc -g -O2 -static -o make ar.o arscan.o commands.o dir.o
+expand.o file.o function.o getopt.o implicit.o job.o main.o
+misc.o read.o remake.o rule.o signame.o variable.o vpath.o
+default.o remote-stub.o version.o opt1.o
+-lutil job.o: In function `load_too_high':
+/lfs/tmp/make-3.79.1/job.c:1565: undefined reference
+to `getloadavg'
+collect2: ld returned 1 exit status
+make[2]: *** [make] Error 1
+make[2]: Leaving directory `/lfs/tmp/make-3.79.1'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/lfs/tmp/make-3.79.1'
+make: *** [all-recursive-am] Error 2</code>
+</pre>
+        <p>
+          这一例中很多人只会包含最下面一部分。
+        </p>
+        <pre class="screen">
+<code class="computeroutput">make [2]: *** [make] Error 1</code>
+</pre>
+        <p>
+          这些信息不足以诊断问题，它只是说有东西出错了，而不是<span class=
+          "emphasis"><em>什么</em></span>出错了。上面例子中的整段输出都要保留下来，它包含了运行的指令和相关的错误消息。
+        </p>
+        <p>
+          关于如何在网络上提问的一篇好文章位于 <a class="ulink" href=
+          "http://catb.org/~esr/faqs/smart-questions.html">http://catb.org/~esr/faqs/smart-questions.html</a>
+          。阅读并遵照其中提示会提升获得帮助的可能性。
+        </p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="resources.html" title="相关资源">上一页</a>
+          <p>
+            相关资源
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../part2.html" title="准备工作">下一页</a>
+          <p>
+            准备工作
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter01.html" title=
+          "第&nbsp;1&nbsp;章&nbsp;介绍">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

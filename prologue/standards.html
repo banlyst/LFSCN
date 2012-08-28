@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      LFS 与标准
+    </title>
+    <link rel="stylesheet" href="../stylesheets/lfs.css" type="text/css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.73.2" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="lfs" id="lfs-SVN-20120827">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 SVN-20120827
+      </h4>
+      <h3>
+        序
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="architecture.html" title="LFS 目标架构">上一页</a>
+          <p>
+            LFS 目标架构
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="package-choices.html" title=
+          "对本书中程序包的解释">下一页</a>
+          <p>
+            对本书中程序包的解释
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="preface.html" title="序">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="pre-standards" name="pre-standards"></a>iv. LFS 与标准
+      </h1>
+      <p>
+        LFS 的结构应尽可能符合 Linux 标准。基本标准有：
+      </p>
+      <div class="itemizedlist">
+        <ul>
+          <li>
+            <p>
+              <a class="ulink" href=
+              "http://pubs.opengroup.org/onlinepubs/9699919799/">POSIX.1-2008</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a class="ulink" href=
+              "http://www.pathname.com/fhs/pub/fhs-2.3.html">文件系统层级标准
+              (FHS)</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a class="ulink" href=
+              "http://refspecs.freestandards.org/LSB_4.0.0/">Linux 基础标准 (LSB)
+              核心要求 4.0</a>
+            </p>
+            <p>
+              LSB 有五个分立的标准：核心、C++、桌面、解释型语言和打印。除通用要求之外，还有一些架构特有的要求。LFS
+              试图符合前一节中提及的架构的相关要求。
+            </p>
+            <div class="admon note">
+              <img alt="[注意]" src="../images/note.png" />
+              <h3>
+                注意
+              </h3>
+              <p>
+                很多人不认可 LSB 的要求。定义它的主要目的是为了确保专有软件可以在兼容的系统环境下正确安装和运行。由于 LFS
+                是基于源代码的，用户对程序包有完全的控制，很多人选择不安装某些由 LSB 指定的程序包。
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <p>
+        创建一个完整的 LFS 系统并通过 LSB 认证可以做到，但仍需很多 LFS 以外的程序包。所有的附加程序包在 BLFS 中都有安装引导。
+      </p>
+      <div class="variablelist">
+        <h3>
+          LSB 需求且 LFS 支持的程序包
+        </h3>
+        <table border="0">
+          <col align="left" valign="top" />
+          <tbody>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  核心：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  Bash、Binutils、Coreutils、Diffutils、File、Findutils、Gawk、Grep,
+                  Gzip, M4, Man-DB, Ncurses,
+                  Procps、Psmisc、Sed、Shadow、Tar、Util-linux、Zlib
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  C++：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  Gcc
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  桌面：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  无
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  解释型语言：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  Perl
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  打印：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  无
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  多媒体：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  无
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="variablelist">
+        <h3>
+          LSB 需求且 BLFS 支持的程序包
+        </h3>
+        <table border="0">
+          <col align="left" valign="top" />
+          <tbody>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  核心：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  At、Batch (作为 At
+                  的一部分)、Bc、Cpio、Ed、Fcrontab、Initd-tools、PAM、Sendmail (或
+                  Postfix 或 Exim)
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  C++：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  无
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  桌面：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  ATK、Cairo、Desktop-file-utils、Freetype、Fontconfig、Glib2、GTK+2、Icon-naming-utils、Libjpeg、Libpng、Libxml2、MesaLib、Pango、Qt3、Qt4、Xorg
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  解释型语言：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  Python
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  打印：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  CUPS
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  <span class="term"><span class="emphasis"><em>LSB
+                  多媒体：</em></span></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  Alsa 库、NSPR、NSS、OpenSSL、Java、Xdg-utils
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="architecture.html" title="LFS 目标架构">上一页</a>
+          <p>
+            LFS 目标架构
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="package-choices.html" title=
+          "对本书中程序包的解释">下一页</a>
+          <p>
+            对本书中程序包的解释
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="preface.html" title="序">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 SVN-20120827">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
