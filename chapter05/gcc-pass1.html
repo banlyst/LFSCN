@@ -51,8 +51,7 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The GCC package contains the GNU compiler collection, which
-          includes the C and C++ compilers.
+          GCC 程序包包含 GNU 编译器集，其中包括 C 和 C++ 编译器。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -87,7 +86,7 @@
           </p>
         </div>
         <pre class="userinput">
-<kbd class="command">tar -jxf ../mpfr-3.1.1.tar.bz2
+<kbd class="command">tar -Jxf ../mpfr-3.1.1.tar.xz
 mv -v mpfr-3.1.1 mpfr
 tar -Jxf ../gmp-5.0.5.tar.xz
 mv -v gmp-5.0.5 gmp
@@ -128,6 +127,13 @@ done</kbd>
           <span class="command"><strong>cp -u</strong></span>
           联用时这可以防止由于误操作将命令运行两次而改变原有文件。
         </p>
+        <p>
+          不能正确检测堆栈保护，会导致 Glibc-2.16.0 编制时出现问题。应用以下命令修复之：
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i '/k prot/agcc_cv_libc_provides_ssp=yes' gcc/configure</kbd>
+</pre>
         <p>
           GCC 文档推荐在源代码目录外创建目录编制 GCC：
         </p>
@@ -284,8 +290,7 @@ cd ../gcc-build</kbd>
         <p>
           有关此程序包的细节位于<a class="xref" href=
           "../chapter06/gcc.html#contents-gcc" title=
-          "6.17.2.&nbsp;Contents of GCC">第&nbsp;6.17.2&nbsp;节 “Contents of
-          GCC”</a>。
+          "6.17.2.&nbsp;GCC 的内容">第&nbsp;6.17.2&nbsp;节 “GCC 的内容”</a>。
         </p>
       </div>
     </div>
